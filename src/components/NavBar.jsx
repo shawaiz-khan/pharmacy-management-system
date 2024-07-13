@@ -15,7 +15,7 @@ export default function NavBar() {
                     <Link to="/dashboard">DashBoard</Link>
                 </li>
                 <li className="tracking-wider cursor-pointer">
-                    <h1>Contact</h1>
+                    <Link to="/about">About</Link>
                 </li>
             </ul>
         </nav>
