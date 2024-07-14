@@ -7,6 +7,7 @@ import { faBook, faKitMedical } from "@fortawesome/free-solid-svg-icons";
 import MedicineCategory from "../components/MedicineCategory";
 import { medicines } from "../assets/data/medicinesData";
 import MedicinesSlider from "../components/MedicinesSlider";
+import Footer from "../components/Footer";
 
 export default function Home() {
     return (
@@ -54,7 +55,7 @@ export default function Home() {
                             reports quickly and effortlessly. We’re committed to helping you run your pharmacy smoothly and
                             efficiently, so you can focus on what you do best – providing exceptional care to your patients.</p>
                         <div className="w-full justify-start flex text-start mt-5">
-                            <h1 className="font-medium bg-green-600 border-2 border-green-600 w-fit p-2 rounded text-white hover:bg-transparent hover:border-2 hover:border-green-700 hover:text-green-800 transition-all 0.3s ease-in"><Link to="/about">Read More<FontAwesomeIcon icon={faBook} className="ml-2" /></Link></h1>
+                            <h1 className="font-medium  bg-green-600 border-2 border-green-600 w-fit p-2 rounded text-white hover:bg-transparent hover:border-2 hover:border-green-700 hover:text-green-800 transition-all 0.3s ease-in"><Link to="/about">Read More<FontAwesomeIcon icon={faBook} className="ml-2" /></Link></h1>
                         </div>
                     </div>
                     <div className="flex-1 flex justify-center items-center">
@@ -74,11 +75,19 @@ export default function Home() {
                     </div>
                 </section>
                 {/* Medicines Categories Section  */}
-                <section className="w-screen h-screen px-5 py-7 flex flex-col gap-5 items-center bg-white">
+                <section className="w-screen h-full px-5 py-7 flex flex-col gap-5 items-center bg-white">
                     <div>
                         <h1 className="text-green-900 font-bold text-4xl mb-5 mt-5 justify-center items-center text-center">Medicine Categories</h1>
                         <div className="w-full">
                             <MedicineCategory medicinesData={medicines} />
+                        </div>
+                    </div>
+                </section>
+                {/* Footer Section  */}
+                <section className="w-screen h-full px-5 py-0 flex flex-col gap-5 items-center bg-white">
+                    <div>
+                        <div className="w-screen">
+                            <Footer />
                         </div>
                     </div>
                 </section>
