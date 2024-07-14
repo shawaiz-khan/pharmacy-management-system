@@ -5,6 +5,9 @@ import AboutImg from "../assets/images/abt-1.jpg";
 import MissionImg from "../assets/images/mssn-1.jpg";
 import OfferImg from "../assets/images/offr-1.jpg";
 import WhyChooseUSImg from "../assets/images/wcUS-1.jpg";
+import SustainabilityImg from "../assets/images/abt-2.jpg";
+import Footer from "../components/Footer";
+import GoToTop from "../components/GoToTop";
 
 export default function About() {
     return (
@@ -26,7 +29,7 @@ export default function About() {
                     <section className="w-full text-center flex flex-col justify-center items-center h-full relative z-10">
                         <div className="w-[690px] mx-auto">
                             <h1 className="text-white text-[20px] tracking-normal -mb-6">Home / About</h1>
-                            <p className="text-white font-bold text-6xl tracking-wide mt-6">Pharmacy Management System</p>
+                            <p className="text-white font-bold text-6xl tracking-wide mt-6">Who We Are</p>
                             <div className="flex justify-center mt-8 p-5">
                                 <button className="bg-green-600 border-2 border-green-600 tracking-wider text-white text-xl font-workSans rounded w-fit flex items-center justify-center py-2 px-5 hover:bg-transparent hover:border-2 hover:border-green-600 transition-all ease-in btn-info font-normal">Get Started</button>
                                 <p className="tracking-wider text-white font-workSans text-base w-fit flex items-center justify-center py-4 px-5 btn-info ml-4 cursor-pointer font-medium font-workSans">Learn More</p>
@@ -125,7 +128,33 @@ export default function About() {
                         </ul>
                     </div>
                 </section>
+                {/* Sustainability Practices Section  */}
+                <section className="w-screen h-screen px-5 py-7 flex flex-row gap-5 items-center bg-white">
+                    <div className="flex-1">
+                        <h1 className="text-green-900 font-bold text-4xl mb-5">Sustainability Practices</h1>
+                        <p>At Infinity Shadow, we believe in making a positive impact on our planet through sustainable practices. Our commitment to sustainability is evident in every aspect of our operations. We actively work to minimize our carbon footprint by optimizing our supply chain, reducing waste, and using eco-friendly materials wherever possible.
+                            <br></br>
+                            <br></br>
+                            Our office practices reflect our dedication to the environment. We have implemented energy-efficient solutions, reduced paper usage through digital documentation, and encourage recycling and responsible disposal of materials. Our team is continuously educated on the importance of sustainable practices and their role in preserving our planet for future generations.
+                            <br></br>
+                            <br></br>
+                            By integrating sustainability into our core business strategy, we strive to create a healthier environment and a brighter future. We believe that every small step counts and together, we can make a significant difference in preserving the planet for generations to come.</p>
+                    </div>
+                    <div className="flex-1 flex justify-center items-center">
+                        <img src={SustainabilityImg} alt="Sustainability Practices" className="w-fit p-4" />
+                    </div>
+                </section>
+                {/* Footer Section  */}
+                <section className="w-screen h-full px-5 py-0 flex flex-col gap-5 items-center bg-white">
+                    <div>
+                        <div className="w-screen">
+                            <Footer />
+                        </div>
+                    </div>
+                </section>
             </main>
+            {/* Go To Top Component  */}
+            <GoToTop />
         </div>
     );
 }

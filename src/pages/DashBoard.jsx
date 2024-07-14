@@ -4,6 +4,8 @@ import Transactions from "../components/Transactions";
 import { transactions } from "../assets/data/transactionData";
 import MedicinesSlider from "../components/MedicinesSlider";
 import { medicines } from "../assets/data/medicinesData";
+import Footer from "../components/Footer";
+import GoToTop from "../components/GoToTop";
 
 export default function DashBoard() {
     return (
@@ -37,7 +39,17 @@ export default function DashBoard() {
                     <Transactions transactionData={transactions} />
                     <MedicinesSlider medicinesData={medicines} />
                 </section>
+                {/* Footer Section  */}
+                <section className="w-screen h-full px-5 py-0 flex flex-col gap-5 items-center bg-white">
+                    <div>
+                        <div className="w-screen">
+                            <Footer />
+                        </div>
+                    </div>
+                </section>
             </div>
+            {/* Go To Top Component  */}
+            <GoToTop />
         </main>
     )
 }

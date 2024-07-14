@@ -8,6 +8,7 @@ import MedicineCategory from "../components/MedicineCategory";
 import { medicines } from "../assets/data/medicinesData";
 import MedicinesSlider from "../components/MedicinesSlider";
 import Footer from "../components/Footer";
+import GoToTop from "../components/GoToTop";
 
 export default function Home() {
     return (
@@ -92,6 +93,8 @@ export default function Home() {
                     </div>
                 </section>
             </main>
+            {/* Go To Top Component  */}
+            <GoToTop />
         </div>
     );
 }
