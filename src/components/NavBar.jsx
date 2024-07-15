@@ -7,7 +7,7 @@ export default function NavBar() {
             <div className="flex cursor-pointer items-center w-80 p-8">
                 <Link to="/"><img src={Logo} alt="Infinity Shadow" className='w-full' /></Link>
             </div>
-            <ul className="flex uppercase gap-8">
+            <ul className="flex uppercase gap-5">
                 <li className="tracking-wider cursor-pointer">
                     <Link to="/">Home</Link>
                 </li>
@@ -16,6 +16,18 @@ export default function NavBar() {
                 </li>
                 <li className="tracking-wider cursor-pointer">
                     <Link to="/about">About</Link>
+                </li>
+                <li className="tracking-wider cursor-pointer">
+                    <Link to="/medicine-search">Medicines</Link>
+                </li>
+                <li className="tracking-wider cursor-pointer">
+                    <Link to="/patient-records">Patients</Link>
+                </li>
+                <li className="tracking-wider cursor-pointer">
+                    <Link to="/login">Login</Link>
+                </li>
+                <li className="tracking-wider cursor-pointer">
+                    <Link to="/contact">Contact Us</Link>
                 </li>
             </ul>
         </nav>

@@ -1,13 +1,9 @@
 import HeroImg from "../assets/images/hero.jpg";
 import NavBar from "../components/NavBar";
-import Transactions from "../components/Transactions";
-import { transactions } from "../assets/data/transactionData";
-import MedicinesSlider from "../components/MedicinesSlider";
-import { medicines } from "../assets/data/medicinesData";
 import Footer from "../components/Footer";
 import GoToTop from "../components/GoToTop";
 
-export default function DashBoard() {
+export default function Contact() {
     return (
         <main>
             <div
@@ -25,19 +21,13 @@ export default function DashBoard() {
                 {/* Hero Section  */}
                 <section className="w-full text-center flex flex-col justify-center items-center h-full relative z-10">
                     <div className="w-[690px] mx-auto">
-                        <h1 className="text-white text-[20px] tracking-normal -mb-6">Home / DashBoard</h1>
+                        <h1 className="text-white text-[20px] tracking-normal -mb-6">Home / Login</h1>
                         <p className="text-white font-bold text-6xl tracking-wide mt-6">DashBoard & Stats</p>
                         <div className="flex justify-center mt-8 p-5">
                             <button className="bg-green-600 border-2 border-green-600 tracking-wider text-white text-xl font-workSans rounded w-fit flex items-center justify-center py-2 px-5 hover:bg-transparent hover:border-2 hover:border-green-600 transition-all ease-in btn-info font-normal">Get Started</button>
                             <p className="tracking-wider text-white font-workSans text-base w-fit flex items-center justify-center py-4 px-5 btn-info ml-4 cursor-pointer font-medium font-workSans">Learn More</p>
                         </div>
                     </div>
-                </section>
-            </div>
-            <div>
-                <section className="w-full h-full px-3 py-5">
-                    <Transactions transactionData={transactions} />
-                    <MedicinesSlider medicinesData={medicines} />
                 </section>
             </div>
             {/* Footer Section  */}
