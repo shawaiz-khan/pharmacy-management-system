@@ -4,32 +4,18 @@ import Logo from '../assets/logos/logo-1.png';
 export default function NavBar() {
     return (
         <nav className="w-full text-[#fff] z-50 relative py-0 px-20 font-workSans flex justify-between items-center bg-transparent">
-            <div className="flex cursor-pointer items-center w-80 p-8">
+            <div className="flex cursor-pointer items-center w-[350px] p-8">
                 <Link to="/"><img src={Logo} alt="Infinity Shadow" className='w-full' /></Link>
             </div>
-            <ul className="flex uppercase gap-5">
-                <li className="tracking-wider cursor-pointer">
-                    <Link to="/">Home</Link>
-                </li>
-                <li className="tracking-wider cursor-pointer">
-                    <Link to="/dashboard">DashBoard</Link>
-                </li>
-                <li className="tracking-wider cursor-pointer">
-                    <Link to="/about">About</Link>
-                </li>
-                <li className="tracking-wider cursor-pointer">
-                    <Link to="/medicine-search">Medicines</Link>
-                </li>
-                <li className="tracking-wider cursor-pointer">
-                    <Link to="/patient-records">Patients</Link>
-                </li>
-                <li className="tracking-wider cursor-pointer">
-                    <Link to="/login">Login</Link>
-                </li>
-                <li className="tracking-wider cursor-pointer">
-                    <Link to="/contact">Contact Us</Link>
-                </li>
-            </ul>
+            <div className="container mx-auto flex justify-end items-end">
+                <div className="flex space-x-6 justify-end text-end">
+                    <Link to="/" className="text-white hover:bg-green-700 hover:text-white-300 px-2 py-2 rounded-md transition duration-300 ease-in-out">Home</Link>
+                    <Link to="/dashboard" className="text-white hover:bg-green-700 hover:text-white-300 px-2 py-2 rounded-md transition duration-300 ease-in-out">Dashboard</Link>
+                    <Link to="/medicine-search" className="text-white hover:bg-green-700 hover:text-white-300 px-2 py-2 rounded-md transition duration-300 ease-in-out">Medicines</Link>
+                    <Link to="/contact" className="text-white hover:bg-green-700 hover:text-white-300 px-2 py-2 rounded-md transition duration-300 ease-in-out">Contact</Link>
+                    <Link to="/login" className="text-white hover:bg-green-700 hover:text-white-300 px-2 py-2 rounded-md transition duration-300 ease-in-out">Login / Register</Link>
+                </div>
+            </div>
         </nav>
     )
 }

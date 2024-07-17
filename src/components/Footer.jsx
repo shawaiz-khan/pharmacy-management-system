@@ -13,7 +13,7 @@ export default function Footer() {
             <div className="py-10 px-16 flex items-center justify-between bg-[#002929] w-[900px] rounded-lg -mb-[80px] z-50">
                 <h2 className="text-3xl text-white sm:text-4xl">
                     <span className="block font-bold tracking-tight text-4xl">Looking for a Medicine?</span>
-                    <span className="block pt-4 tracking-tight text-lg">Find Details of the Medicine you want.</span>
+                    <span className="block pt-4 tracking-tight text-lg">Find the Medicine you are Looking for.</span>
                 </h2>
                 <div className="mt-8 flex lg:flex-shrink-0 lg:mt-0">
                     <div className="inline-flex rounded-md shadow">

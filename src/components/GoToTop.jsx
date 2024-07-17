@@ -28,7 +28,7 @@ const GoToTop = () => {
     }, []);
 
     return (
-        <div className="fixed bottom-4 right-4">
+        <div className="fixed bottom-4 right-4 z-50">
             {isVisible && (
                 <button onClick={scrollToTop} className="p-4 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-700 transition duration-300" aria-label="Go to Top">↑</button>
             )}
