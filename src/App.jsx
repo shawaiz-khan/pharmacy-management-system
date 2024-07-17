@@ -6,7 +6,6 @@ import About from './pages/About';
 import MedicineSearch from './pages/MedicineSearch';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import PatientRecords from './pages/PatientRecords';
 import Contact from './pages/Contact';
 
 function App() {
@@ -20,7 +19,6 @@ function App() {
         <Route path='/medicine-search' element={<MedicineSearch />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/patient-records" element={<PatientRecords />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </>

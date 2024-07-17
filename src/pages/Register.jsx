@@ -1,45 +1,83 @@
-import HeroImg from "../assets/images/hero.jpg";
-import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
+import BlackNavBar from "../components/BlackNavBar";
 import GoToTop from "../components/GoToTop";
+import LoginImg from "../assets/images/log.jpg";
+import { Link } from "react-router-dom";
 
 export default function Contact() {
     return (
-        <main>
-            <div
-                style={{
-                    backgroundImage: `url(${HeroImg})`,
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                    height: "100vh",
-                    width: "100%",
-                }}
-                className="w-full h-screen font-workSans relative flex flex-col justify-center items-center"
-            >
-                <div className="absolute text-white z-0 opacity-65 bg-black w-full h-screen top-0 left-0"></div>
-                <NavBar />
-                {/* Hero Section  */}
-                <section className="w-full text-center flex flex-col justify-center items-center h-full relative z-10">
-                    <div className="w-[690px] mx-auto">
-                        <h1 className="text-white text-[20px] tracking-normal -mb-6">Home / Register</h1>
-                        <p className="text-white font-bold text-6xl tracking-wide mt-6">DashBoard & Stats</p>
-                        <div className="flex justify-center mt-8 p-5">
-                            <button className="bg-green-600 border-2 border-green-600 tracking-wider text-white text-xl font-workSans rounded w-fit flex items-center justify-center py-2 px-5 hover:bg-transparent hover:border-2 hover:border-green-600 transition-all ease-in btn-info font-normal">Get Started</button>
-                            <p className="tracking-wider text-white font-workSans text-base w-fit flex items-center justify-center py-4 px-5 btn-info ml-4 cursor-pointer font-medium font-workSans">Learn More</p>
+        <main className="bg-green-500/20">
+                <div className="w-full  mb-5">
+                    <BlackNavBar />
+                </div>
+                {/* Login Form Section  */}
+            <div className="pb-[540px] border-red-500 h-screen">
+                <section className="min-h-screen flex items-center justify-center pb-30">
+                    <div className="bg-gray-100 p-5 flex rounded-2xl shadow-lg max-w-3xl">
+                        <div className="md:w-1/2 px-5 mr-4">
+                            <h2 className="text-2xl font-bold text-[#002D74]">Register</h2>
+                            <p className="text-sm mt-4 text-[#002D74]">If you are a new user, please register</p>
+                            <form className="mt-6" action="#" method="POST">
+                                <div className="flex flex-grid">
+                                    <div>
+                                        <label className="block text-gray-700">First Name</label>
+                                        <input type="text" placeholder="Enter First Name" className="w-full px-4 py-3 rounded-md bg-gray-200 mt-2 border focus:border-green-500 focus:bg-white focus:outline-none" autoFocus autoComplete="on" required />
+                                    </div>
+
+                                    <div className="ml-3">
+                                        <label className="block text-gray-700">Last Name</label>
+                                        <input type="text" placeholder="Enter Last Name" className="w-full px-4 py-3 rounded-md bg-gray-200 mt-2 border focus:border-green-500 focus:bg-white focus:outline-none" autoFocus autoComplete="on" required />
+                                    </div>
+                                </div>
+
+                                <div className="mt-4">
+                                    <label className="block text-gray-700">Email Address</label>
+                                    <input type="email" placeholder="Enter Email Address" className="w-full px-4 py-3 rounded-md bg-gray-200 mt-2 border focus:border-green-500 focus:bg-white focus:outline-none" autoFocus autoComplete="on" required />
+                                </div>
+
+                                <div className="mt-4">
+                                    <label className="block text-gray-700">Password</label>
+                                    <input type="password" placeholder="Enter Password" minLength="6" className="w-full px-4 py-3 rounded-md bg-gray-200 mt-2 border focus:border-green-500 focus:bg-white focus:outline-none" required />
+                                </div>
+
+                                <button type="submit" className="w-full block transition-all 0.3s ease-in bg-green-500 hover:bg-green-400 focus:bg-green-400 text-white font-semibold rounded px-4 py-3 mt-6" >Sign Up</button>
+                            </form>
+
+                            <div className="mt-7 grid grid-cols-3 items-center text-gray-500">
+                                <hr className="border-gray-500" />
+                                <p className="text-center text-sm">OR</p>
+                                <hr className="border-gray-500" />
+                            </div>
+
+                            <button className="mb-5 bg-white hover:bg-green-200 border border-green-200 py-2 w-full rounded mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 48 48">
+                                    <defs>
+                                        <path id="a" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z" />
+                                    </defs>
+                                    <clipPath id="b">
+                                        <use xlinkHref="#a" overflow="visible" />
+                                    </clipPath>
+                                    <path clipPath="url(#b)" fill="#FBBC05" d="M0 37V11l17 13z" />
+                                    <path clipPath="url(#b)" fill="#EA4335" d="M0 11l17 13 7-6.1L48 14V0H0z" />
+                                    <path clipPath="url(#b)" fill="#34A853" d="M0 37l30-23 7.9 1L48 0v48H0z" />
+                                    <path clipPath="url(#b)" fill="#4285F4" d="M48 48L17 24l-4-3 35-10z" />
+                                </svg>
+                                <span className="ml-4">Login with Google</span>
+                            </button>
+
+                            <div className="text-sm flex justify-between items-center mt-3">
+                                <p>If you already  have an account...</p>
+                                <Link to="/login"><button className="py-2 px-5 ml-3 bg-white border rounded hover:scale-110 hover:bg-green-500 hover:text-white duration-300 border-green-400">Login</button></Link>
+                            </div>
+                        </div>
+
+                        <div className="w-1/2 md:block hidden">
+                            <img src={LoginImg} className="rounded-2xl" alt="Login Image" />
                         </div>
                     </div>
                 </section>
+                {/* Go To Top Component  */}
+                <GoToTop />
             </div>
-            {/* Footer Section  */}
-            <section className="w-screen h-full px-5 py-0 flex flex-col gap-5 items-center bg-white">
-                <div>
-                    <div className="w-screen">
-                        <Footer />
-                    </div>
-                </div>
-            </section>
-            {/* Go To Top Component  */}
-            <GoToTop />
         </main>
     )
 }
