@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 
 export default function Contact() {
     return (
-        <main>
-            <div className="w-full bg-gray-200">
+        <main className="bg-green-500/20">
+            <div className="w-full">
                 <BlackNavBar />
             </div>
             {/* Login Form Section  */}
-            <section className="border-red-500 bg-gray-200 min-h-screen flex items-center justify-center">
+            <section className="border-red-500 min-h-screen flex items-center justify-center">
                 <div className="bg-gray-100 p-5 flex rounded-2xl shadow-lg max-w-3xl">
                     <div className="md:w-1/2 px-5 mr-4">
                         <h2 className="text-2xl font-bold text-[#002D74]">Login</h2>
@@ -61,7 +61,7 @@ export default function Contact() {
                         </div>
                     </div>
 
-                    <div className="w-1/2 md:block hidden">
+                    <div className="w-1/2 md:block hidden pt-8 pb-8">
                         <img src={LoginImg} className="rounded-2xl" alt="Login Image" />
                     </div>
                 </div>

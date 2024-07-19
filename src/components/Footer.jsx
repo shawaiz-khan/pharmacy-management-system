@@ -25,7 +25,7 @@ export default function Footer() {
             </div>
             {/* Footer Section */}
             <footer className="w-full bg-green-100 border-green-600 border-t-2">
-                <div className="container px-6 py-12 mx-auto">
+                <div className="container px-20 py-12 mx-auto">
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4 pt-16">
                         <div className="sm:col-span-2">
                             <h1 className="max-w-lg text-xl font-semibold tracking-tight text-black xl:text-2xl">Subscribe to Our Newsletter</h1>

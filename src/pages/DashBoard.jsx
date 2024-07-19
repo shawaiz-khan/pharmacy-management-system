@@ -1,55 +1,99 @@
-import HeroImg from "../assets/images/hero.jpg";
-import NavBar from "../components/NavBar";
-import Transactions from "../components/Transactions";
-import { transactions } from "../assets/data/transactionData";
-import MedicinesSlider from "../components/MedicinesSlider";
-import { medicines } from "../assets/data/medicinesData";
-import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 import GoToTop from "../components/GoToTop";
+import { useState } from "react";
+import Logo from '../assets/logos/logo-5.png';
 
-export default function DashBoard() {
+const DashBoard = () => {
     return (
-        <main>
-            <div
-                style={{
-                    backgroundImage: `url(${HeroImg})`,
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                    height: "100vh",
-                    width: "100%",
-                }}
-                className="w-full h-screen font-workSans relative flex flex-col justify-center items-center"
-            >
-                <div className="absolute text-white z-0 opacity-65 bg-black w-full h-screen top-0 left-0"></div>
-                <NavBar />
-                {/* Hero Section  */}
-                <section className="w-full text-center flex flex-col justify-center items-center h-full relative z-10">
-                    <div className="w-[690px] mx-auto">
-                        <h1 className="text-white text-[20px] tracking-normal -mb-6">Home / DashBoard</h1>
-                        <p className="text-white font-bold text-6xl tracking-wide mt-6">DashBoard & Stats</p>
-                        <div className="flex justify-center mt-8 p-5">
-                            <button className="bg-green-600 border-2 border-green-600 tracking-wider text-white text-xl font-workSans rounded w-fit flex items-center justify-center py-2 px-5 hover:bg-transparent hover:border-2 hover:border-green-600 transition-all ease-in btn-info font-normal">Get Started</button>
-                            <p className="tracking-wider text-white font-workSans text-base w-fit flex items-center justify-center py-4 px-5 btn-info ml-4 cursor-pointer font-medium font-workSans">Learn More</p>
+        <main className="bg-gray-100 min-h-screen flex">
+            {/* Sidebar */}
+            <div className="w-64 bg-white shadow-md flex flex-col">
+                <div className="h-16 flex items-start justify-start bg-transparent text-white text-2xl font-bold">
+                    <div className="flex cursor-pointer w-[250px] pr-8 pl-5 py-8 justify-start items-start">
+                        <Link to="/"><img src={Logo} alt="Infinity Shadow" className='w-full' /></Link>
+                    </div>
+                </div>
+                <ul className="mt-6 flex-grow">
+                    <li className="px-6 py-2 text-gray-700 hover:bg-blue-100">Overview</li>
+                    <li className="px-6 py-2 text-gray-700 hover:bg-blue-100">Sales</li>
+                    <li className="px-6 py-2 text-gray-700 hover:bg-blue-100">Patient Records</li>
+                    <li className="px-6 py-2 text-gray-700 hover:bg-blue-100">Transactions</li>
+                    <li className="px-6 py-2 text-gray-700 hover:bg-blue-100">Low Stock</li>
+                    <li className="px-6 py-2 text-gray-700 hover:bg-blue-100">New Medicines</li>
+                </ul>
+            </div>
+
+            {/* Dashboard Content */}
+            <div className="flex-1 flex flex-col">
+                <section className="flex-1">
+                    {/* NavBar Section */}
+                    <div className="bg-green-500 h-16 w-3/4 mx-auto text-center flex justify-center items-center rounded-full my-5">
+                        <DashboardNavBar />
+                    </div>
+                    <div className="min-h-screen p-10">
+                        <div className="container mx-auto">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <div className="bg-white p-6 rounded-lg shadow-md">
+                                    <h2 className="text-xl font-semibold mb-4">Sales</h2>
+                                    <p className="text-gray-700">Total Sales: $10,000</p>
+                                </div>
+                                <div className="bg-white p-6 rounded-lg shadow-md">
+                                    <h2 className="text-xl font-semibold mb-4">Patient Records</h2>
+                                    <p className="text-gray-700">Total Patients: 120</p>
+                                </div>
+                                <div className="bg-white p-6 rounded-lg shadow-md">
+                                    <h2 className="text-xl font-semibold mb-4">Transactions</h2>
+                                    <p className="text-gray-700">Total Transactions: 300</p>
+                                </div>
+                                <div className="bg-white p-6 rounded-lg shadow-md">
+                                    <h2 className="text-xl font-semibold mb-4">Low Stock</h2>
+                                    <ul className="list-disc list-inside text-gray-700">
+                                        <li>Medicine A</li>
+                                        <li>Medicine B</li>
+                                        <li>Medicine C</li>
+                                    </ul>
+                                </div>
+                                <div className="bg-white p-6 rounded-lg shadow-md">
+                                    <h2 className="text-xl font-semibold mb-4">New Medicines</h2>
+                                    <ul className="list-disc list-inside text-gray-700">
+                                        <li>Medicine X</li>
+                                        <li>Medicine Y</li>
+                                        <li>Medicine Z</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
             </div>
-            <div>
-                <section className="w-full h-full px-3 py-5">
-                    <Transactions transactionData={transactions} />
-                    <MedicinesSlider medicinesData={medicines} />
-                </section>
-            </div>
-            {/* Footer Section  */}
-            <section className="w-screen h-full px-5 py-0 flex flex-col gap-5 items-center bg-white">
-                <div>
-                    <div className="w-screen">
-                        <Footer />
-                    </div>
-                </div>
-            </section>
-            {/* Go To Top Component  */}
+            {/* Go To Top Component */}
             <GoToTop />
         </main>
-    )
+    );
+};
+
+export default DashBoard;
+
+
+function DashboardNavBar() {
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    return (
+        <nav className="w-full text-[#fff] z-50 relative py-0 px-20 font-workSans bg-transparent">
+            <div className="container mx-auto flex justify-center items-center">
+                <div className="flex space-x-6 justify-center items-center">
+                    <Link to="/" className="text-white hover:bg-green-700 hover:text-white-300 px-2 py-2 rounded-md transition duration-300 ease-in-out">Home</Link>
+                    <Link to="/medicine-search" className="text-white hover:bg-green-700 hover:text-white-300 px-2 py-2 rounded-md transition duration-300 ease-in-out">Medicine Search</Link>
+                    <Link to="/contact" className="text-white hover:bg-green-700 hover:text-white-300 px-2 py-2 rounded-md transition duration-300 ease-in-out">Contact</Link>
+                    {isLoggedIn ? (
+                        <>
+                            <Link to="/dashboard" className="text-white hover:bg-green-700 hover:text-white-300 px-2 py-2 rounded-md transition duration-300 ease-in-out">Dashboard</Link>
+                            <button onClick={() => setIsLoggedIn(false)} className="text-white hover:bg-green-700 hover:text-white-300 px-2 py-2 rounded-md transition duration-300 ease-in-out">Logout</button>
+                        </>
+                    ) : (
+                        <Link to="/login" className="text-white hover:bg-green-700 hover:text-white-300 px-2 py-2 rounded-md transition duration-300 ease-in-out">Login / Register</Link>
+                    )}
+                </div>
+            </div>
+        </nav>
+    );
 }

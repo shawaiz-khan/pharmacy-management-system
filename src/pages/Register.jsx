@@ -1,6 +1,6 @@
 import BlackNavBar from "../components/BlackNavBar";
 import GoToTop from "../components/GoToTop";
-import LoginImg from "../assets/images/log.jpg";
+import RegImg from "../assets/images/reg.jpg";
 import { Link } from "react-router-dom";
 
 export default function Contact() {
@@ -70,8 +70,8 @@ export default function Contact() {
                             </div>
                         </div>
 
-                        <div className="w-1/2 md:block hidden">
-                            <img src={LoginImg} className="rounded-2xl" alt="Login Image" />
+                        <div className="w-1/2 md:block hidden pt-8 pb-8">
+                            <img src={RegImg} className="rounded-2xl h-full" alt="Login Image" />
                         </div>
                     </div>
                 </section>

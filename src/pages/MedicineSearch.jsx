@@ -125,7 +125,7 @@ export default function Contact() {
             </section>
             {/* Display Section */}
                 {filteredMedicines.length > 0 && (
-                    <section className="mt-8 px-4 h-screen w-full bg-white">
+                    <section className="mt-8 px-4 h-full w-full bg-white">
                         <h2 className="text-2xl font-bold mb-4">Display Medicines</h2>
                         <ul className="space-y-4">
                             {filteredMedicines.map(medicine => (
