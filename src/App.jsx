@@ -1,12 +1,12 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import DashBoard from './pages/DashBoard';
 import About from './pages/About';
 import MedicineSearch from './pages/MedicineSearch';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Contact from './pages/Contact';
+import UserDashBoard from './pages/UserDashboard';
 
 function App() {
 
@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
-        <Route path='/dashboard' element={<DashBoard />} />
+        <Route path="dashboard/*" element={<UserDashBoard />} />
         <Route path='/medicine-search' element={<MedicineSearch />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

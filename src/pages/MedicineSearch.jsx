@@ -10,12 +10,14 @@ import GitIcon from '../assets/images/git.svg';
 import InstaIcon from '../assets/images/insta.svg';
 import WebIcon from '../assets/images/webs.svg';
 import LinkedIcon from '../assets/images/linked.svg';
+import { Link } from "react-router-dom";
 
 export default function Contact() {
     const [medicineName, setMedicineName] = useState('');
     const [dosage, setDosage] = useState('');
     const [units, setUnits] = useState('');
     const [filteredMedicines, setFilteredMedicines] = useState([]);
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
 
     const handleSearchSubmit = () => {
         const filtered = medicines.filter((medicine) => {
@@ -124,25 +126,32 @@ export default function Contact() {
                 </div>
             </section>
             {/* Display Section */}
-                {filteredMedicines.length > 0 && (
-                    <section className="mt-8 px-4 h-full w-full bg-white">
-                        <h2 className="text-2xl font-bold mb-4">Display Medicines</h2>
-                        <ul className="space-y-4">
-                            {filteredMedicines.map(medicine => (
-                                <li key={medicine.id} className="border border-gray-200 p-4 rounded-md shadow-md">
-                                    <h3 className="text-xl font-bold bg-green-200 rounded p-3">{medicine.medicine}</h3>
-                                    <br></br>
-                                    <p><strong>Dosage:</strong> {medicine.dosage}</p>
-                                    <p><strong>Usage:</strong> {medicine.usage}</p>
-                                    <p><strong>Units:</strong> {medicine.units}</p>
-                                    <p><strong>Category:</strong> {medicine.category}</p>
-                                    <br></br>
-                                    <p>{medicine.description}</p>
-                                </li>
-                            ))}
-                        </ul>
-                    </section>
-                )}
+            {filteredMedicines.length > 0 && (
+                <section className="mt-8 px-4 h-full w-full bg-white">
+                    <h2 className="text-2xl font-bold mb-4">Display Medicines</h2>
+                    <ul className="space-y-4">
+                        {filteredMedicines.map(medicine => (
+                            <li key={medicine.id} className="border border-gray-200 p-4 rounded-md shadow-md">
+                                <h3 className="text-xl font-bold bg-green-200 rounded p-3">{medicine.medicine}</h3>
+                                <br></br>
+                                <p><strong>Dosage:</strong> {medicine.dosage}</p>
+                                <p><strong>Usage:</strong> {medicine.usage}</p>
+                                <p><strong>Units:</strong> {medicine.units}</p>
+                                <p><strong>Category:</strong> {medicine.category}</p>
+                                <br></br>
+                                <p>{medicine.description}</p>
+                                {isLoggedIn ? (
+                                    <>
+                                        <Link to='/dashboard/buy-medicine'><button className="mt-4 bg-green-500 px-5 py-3 rounded-md text-white hover:bg-green-600 transition-all 0.3s ease-in">Buy Now</button></Link>
+                                    </>
+                                ) : (
+                                    setIsLoggedIn(false)
+                                )}
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+            )}
             {/* Footer Section  */}
             <section className="w-screen h-full px-5 py-0 flex flex-col gap-5 items-center bg-white">
                 <div>
