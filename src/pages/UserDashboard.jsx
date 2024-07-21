@@ -21,7 +21,7 @@ export default function UserDashBoard() {
                             <Link to="/"><img src={Logo} alt="Infinity Shadow" className='w-full' /></Link>
                         </div>
                     </div>
-                    <ul className="mt-6 mb-6 flex-grow pt-5 pb-5">
+                    <ul className="mt-20 mb-6 flex-grow pt-5 pb-5">
                         <hr className="m-2" />
                         <li className="px-6 py-2 text-gray-700 cursor-pointer">
                             <Link to="/dashboard/overview" className="text-gray-700 hover:text-green-500">Overview</Link>
@@ -54,7 +54,7 @@ export default function UserDashBoard() {
                     <section className="flex-1">
                         {/* NavBar Section */}
                         <div className="nav-container w-full md:w-3/4 mx-auto">
-                            <div className="bg-green-300 sticky h-16 w-full text-center flex justify-center items-center rounded-full my-9 glassmorphism">
+                            <div className="bg-green-500 sticky h-16 w-full text-center flex justify-center items-center rounded-full my-9 glassmorphism">
                                 <DashboardNavBar />
                             </div>
                             <style>

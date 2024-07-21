@@ -17,7 +17,7 @@ export default function BlackNavBar() {
                     <Link to="/contact" className="text-black hover:bg-green-700 hover:text-white px-2 py-2 rounded-md transition duration-300 ease-in-out">Contact</Link>
                     {isLoggedIn ? (
                         <>
-                            <Link to="/dashboard" className="text-black hover:bg-green-700 hover:text-white px-2 py-2 rounded-md transition duration-300 ease-in-out">Dashboard</Link>
+                            <Link to="/dashboard/overview" className="text-black hover:bg-green-700 hover:text-white px-2 py-2 rounded-md transition duration-300 ease-in-out">Dashboard</Link>
                             <button onClick={() => setIsLoggedIn(false)} className="text-black hover:bg-green-700 hover:text-white px-2 py-2 rounded-md transition duration-300 ease-in-out">Logout</button>
                         </>
                     ) : (

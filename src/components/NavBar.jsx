@@ -17,7 +17,7 @@ export default function NavBar() {
                     <Link to="/contact" className="text-white hover:bg-green-700 hover:text-white-300 px-2 py-2 rounded-md transition duration-300 ease-in-out">Contact</Link>
                     {isLoggedIn ? (
                         <>
-                            <Link to="/dashboard" className="text-white hover:bg-green-700 hover:text-white-300 px-2 py-2 rounded-md transition duration-300 ease-in-out">Dashboard</Link>
+                            <Link to="/dashboard/overview" className="text-white hover:bg-green-700 hover:text-white-300 px-2 py-2 rounded-md transition duration-300 ease-in-out">Dashboard</Link>
                             <button onClick={() => setIsLoggedIn(false)} className="text-white hover:bg-green-700 hover:text-white-300 px-2 py-2 rounded-md transition duration-300 ease-in-out">Logout</button>
                         </>
                     ) : (

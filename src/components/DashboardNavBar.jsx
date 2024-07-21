@@ -12,7 +12,7 @@ function DashboardNavBar() {
                     <Link to="/contact" className="text-white hover:bg-green-700 hover:text-white-300 px-2 py-2 rounded-md transition duration-300 ease-in-out">Contact</Link>
                     {isLoggedIn ? (
                         <>
-                            <button onClick={() => setIsLoggedIn(false)} className="text-white hover:bg-green-700 hover:text-white-300 px-2 py-2 rounded-md transition duration-300 ease-in-out">Logout</button>
+                            <Link to="/"><button onClick={() => setIsLoggedIn(false)} className="text-white hover:bg-green-700 hover:text-white-300 px-2 py-2 rounded-md transition duration-300 ease-in-out">Logout</button></Link>
                         </>
                     ) : (
                         <Link to="/login" className="text-white hover:bg-green-700 hover:text-white-300 px-2 py-2 rounded-md transition duration-300 ease-in-out">Login / Register</Link>

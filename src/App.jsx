@@ -9,7 +9,6 @@ import Contact from './pages/Contact';
 import UserDashBoard from './pages/UserDashboard';
 
 function App() {
-
   return (
     <>
       <Routes>
@@ -22,7 +21,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </>
-  )
+  );
 }
 
 export default App;
