@@ -3,8 +3,14 @@ import { salesData } from "../assets/data/salesData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowTrendDown, faArrowTrendUp } from "@fortawesome/free-solid-svg-icons";
 import { stockAlerts } from "../assets/data/stockData";
+import { transactionData } from "../assets/data/transactionData";
 
 function Overview() {
+    const totalTransaction = () => {
+        return (
+            <h1>{transactionData.id}</h1>
+        );
+    }
     return (
         <div>
             <div className="bg-white p-6 rounded-lg shadow-md">
@@ -44,22 +50,7 @@ function Overview() {
                 })}
             </div>
             <div className="flex flex-row flex-wrap gap-5">
-                {stockAlerts.map((stock, id) => {
-                    return (
-                        <div key={id} className="bg-white rounded-lg shadow-lg mt-10 w-full hover:scale-110 transition-all 0.3s ease-in flex-1">
-                            <div className="text-[27px] text-white bg-red-700 font-bold px-6 py-4 rounded-t-lg">
-                                {stock.stock}<FontAwesomeIcon icon={faArrowTrendDown} className="ml-2" />
-                            </div>
-                            <div className="text-lg px-5 pt-6 flex w-fit h-fit gap-2">
-                                <h1 className="text-red-900 text-2xl font-bold">Remaining Stock: </h1>
-                                <p className="text-red-500 font-bold text-2xl">{stock.units}</p>
-                            </div>
-                            <div className="px-5 py-6">
-                                <p>{stock.description}</p>
-                            </div>
-                        </div>
-                    )
-                })}
+                <h1>{totalTransaction}</h1>
                 {stockAlerts.map((stock, id) => {
                     return (
                         <div key={id} className="bg-white rounded-lg shadow-lg mt-10 w-full hover:scale-110 transition-all 0.3s ease-in flex-1">

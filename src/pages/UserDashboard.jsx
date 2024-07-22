@@ -47,6 +47,9 @@ export default function UserDashBoard() {
                             <Link to="/dashboard/new-medicines" className="text-gray-700 hover:text-green-500">New Medicines</Link>
                         </li>
                         <hr className="m-2" />
+                        <li className="px-6 py-2 text-gray-700 cursor-pointer">
+                            <Link to="/dashboard/new-medicines" className="text-gray-700 hover:text-green-500">Buy Medicines</Link>
+                        </li>
                     </ul>
                 </div>
                 {/* Main Content */}
