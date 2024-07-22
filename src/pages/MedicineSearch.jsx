@@ -10,7 +10,7 @@ import GitIcon from '../assets/images/git.svg';
 import InstaIcon from '../assets/images/insta.svg';
 import WebIcon from '../assets/images/webs.svg';
 import LinkedIcon from '../assets/images/linked.svg';
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Contact() {
     const [medicineName, setMedicineName] = useState('');
@@ -18,6 +18,8 @@ export default function Contact() {
     const [units, setUnits] = useState('');
     const [filteredMedicines, setFilteredMedicines] = useState([]);
     const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+    const navigate = useNavigate();
 
     const handleSearchSubmit = () => {
         const filtered = medicines.filter((medicine) => {
@@ -28,6 +30,10 @@ export default function Contact() {
             return nameMatch && dosageMatch && unitsMatch;
         });
         setFilteredMedicines(filtered);
+    };
+
+    const handleBuyNowClick = (medicine) => {
+        navigate('/buy-medicine', { state: { medicine } });
     };
 
     const clearSearch = () => {
@@ -133,16 +139,14 @@ export default function Contact() {
                         {filteredMedicines.map(medicine => (
                             <li key={medicine.id} className="border border-gray-200 p-4 rounded-md shadow-md">
                                 <h3 className="text-xl font-bold bg-green-200 rounded p-3">{medicine.medicine}</h3>
-                                <br></br>
                                 <p><strong>Dosage:</strong> {medicine.dosage}</p>
                                 <p><strong>Usage:</strong> {medicine.usage}</p>
                                 <p><strong>Units:</strong> {medicine.units}</p>
                                 <p><strong>Category:</strong> {medicine.category}</p>
-                                <br></br>
                                 <p>{medicine.description}</p>
                                 {isLoggedIn ? (
                                     <>
-                                        <Link to='/dashboard/buy-medicine'><button className="mt-4 bg-green-500 px-5 py-3 rounded-md text-white hover:bg-green-600 transition-all 0.3s ease-in">Buy Now</button></Link>
+                                        <button onClick={() => handleBuyNowClick(medicine)} className="mt-4 bg-green-500 px-5 py-3 rounded-md text-white hover:bg-green-600 transition-all 0.3s ease-in">Buy Now</button>
                                     </>
                                 ) : (
                                     setIsLoggedIn(false)

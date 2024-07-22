@@ -6,6 +6,7 @@ export const medicines = [
         units: "Tablets, syrup",
         category: "Analgesic",
         dosage: "500 mg, 650 mg",
+        price: "5.00",
         manufacturer: "Various",
         description: "Paracetamol, also known as acetaminophen, is a widely used over-the-counter analgesic (pain reliever) and antipyretic (fever reducer). It is used to treat mild to moderate pain and to reduce fever.",
         categoryDescription: "Analgesics are drugs used primarily for pain relief."
@@ -17,6 +18,7 @@ export const medicines = [
         units: "Tablets, capsules",
         category: "Nonsteroidal Anti-inflammatory Drug (NSAID)",
         dosage: "200 mg, 400 mg",
+        price: "2.00",
         manufacturer: "Various",
         description: "Ibuprofen is a nonsteroidal anti-inflammatory drug (NSAID) used to relieve pain, reduce inflammation, and lower fever. It is commonly used to treat conditions like arthritis, menstrual pain, and minor injuries.",
         categoryDescription: "Nonsteroidal anti-inflammatory drugs (NSAIDs) are medications that help reduce pain, inflammation, and fever."
@@ -28,6 +30,7 @@ export const medicines = [
         units: "Capsules",
         category: "Proton Pump Inhibitor",
         dosage: "20 mg, 40 mg",
+        price: "8.00",
         manufacturer: "Various",
         description: "Omeprazole is a proton pump inhibitor (PPI) used to reduce the production of stomach acid. It is used to treat acid reflux, gastroesophageal reflux disease (GERD), and stomach ulcers.",
         categoryDescription: "Proton pump inhibitors (PPIs) are medications that reduce the production of stomach acid."
@@ -39,6 +42,7 @@ export const medicines = [
         units: "Tablets",
         category: "HMG-CoA Reductase Inhibitor (Statins)",
         dosage: "10 mg, 20 mg, 40 mg",
+        price: "1.00",
         manufacturer: "Various",
         description: "Simvastatin is an HMG-CoA reductase inhibitor, commonly known as a statin. It is used to lower cholesterol levels and reduce the risk of cardiovascular diseases such as heart attacks and strokes.",
         categoryDescription: "HMG-CoA reductase inhibitors, or statins, are medications that lower cholesterol levels in the blood."
@@ -50,6 +54,7 @@ export const medicines = [
         units: "Tablets",
         category: "Calcium Channel Blocker",
         dosage: "5 mg, 10 mg",
+        price: "4.00",
         manufacturer: "Various",
         description: "Amlodipine is a calcium channel blocker used to treat high blood pressure (hypertension) and coronary artery disease. It helps to relax blood vessels and improve blood flow.",
         categoryDescription: "Calcium channel blockers are medications that relax blood vessels and increase the supply of blood and oxygen to the heart, reducing its workload."
@@ -61,6 +66,7 @@ export const medicines = [
         units: "Tablets",
         category: "HMG-CoA Reductase Inhibitor (Statins)",
         dosage: "10 mg, 20 mg, 40 mg, 80 mg",
+        price: "4.50",
         manufacturer: "Various",
         description: "Atorvastatin is an HMG-CoA reductase inhibitor, commonly known as a statin. It is used to lower cholesterol levels and reduce the risk of cardiovascular diseases such as heart attacks and strokes.",
         categoryDescription: "HMG-CoA reductase inhibitors, or statins, are medications that lower cholesterol levels in the blood."
@@ -72,6 +78,7 @@ export const medicines = [
         units: "Tablets",
         category: "Antidiabetic",
         dosage: "500 mg, 850 mg, 1000 mg",
+        price: "4.59",
         manufacturer: "Various",
         description: "Metformin is an oral antidiabetic drug used to treat type 2 diabetes. It helps to control blood sugar levels by reducing the amount of glucose produced by the liver and improving the body's response to insulin.",
         categoryDescription: "Antidiabetic drugs are medications used to manage and treat diabetes mellitus by lowering blood sugar levels."

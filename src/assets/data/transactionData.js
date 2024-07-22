@@ -1,7 +1,7 @@
 export const transactionData = [
     {
         "id": 1,
-        "medicineName": "Paracetamol",
+        "medicineName": ["Paracetamol", "Citric"],
         "quantity": 10,
         "price": 2.5,
         "date": "2023-07-01",
@@ -148,5 +148,25 @@ export const transactionData = [
         "patientName": "Daniel Wright",
         "patientID": "P1248",
         "doctorName": "Dr. Scott"
-    }
+    },
+    {
+        "id": 16,
+        "medicineName": ["Dianda", "Citric"],
+        "quantity": 10,
+        "price": 2.5,
+        "date": "2023-07-10",
+        "patientName": "John Doe",
+        "patientID": "P1234",
+        "doctorName": "Dr. Smith"
+    },
+    {
+        "id": 17,
+        "medicineName": "Amoxicillin",
+        "quantity": 7,
+        "price": 1.5,
+        "date": "2023-07-20",
+        "patientName": "Tom Lantham",
+        "patientID": "P1249",
+        "doctorName": "Dr. Brown"
+    },
 ]

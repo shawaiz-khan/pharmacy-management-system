@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Contact from './pages/Contact';
 import UserDashBoard from './pages/UserDashboard';
+import BuyMedicine from './pages/BuyMedicine';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path="dashboard/*" element={<UserDashBoard />} />
         <Route path='/medicine-search' element={<MedicineSearch />} />
+        <Route path='/buy-medicine' element={<BuyMedicine />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/contact" element={<Contact />} />
