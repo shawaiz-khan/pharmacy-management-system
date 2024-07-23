@@ -18,12 +18,12 @@ const BuyMedicine = () => {
 
     const [quantity, setQuantity] = useState(1);
 
+    const totalPrice = (medicine.price || 0) * quantity;
+
     const handlePurchase = () => {
         if (quantity > 0) {
-            const totalPrice = (medicine.price || 0) * quantity; // Handle case where price might be undefined
-            alert(`Purchased ${quantity} units of ${medicine.medicine || 'Medicine'} for $${totalPrice.toFixed(2)}.`);
-            // Logic to save the purchase details
-            navigate('/dashboard'); // Redirect after purchase
+            alert(`Purchased ${quantity} units of ${medicine.medicine || 'Medicine'} for $${totalPrice}.`);
+            navigate('/dashboard/overview');
         }
     };
 
@@ -44,8 +44,8 @@ const BuyMedicine = () => {
                 {/* Hero Section */}
                 <section className="w-full text-center flex flex-col justify-center items-center h-full relative z-10">
                     <div className="w-[690px] mx-auto">
-                        <h1 className="text-white text-[20px] tracking-normal -mb-6">Home / Medicines</h1>
-                        <p className="text-white font-bold text-6xl tracking-wide mt-6">Search for Medicines</p>
+                        <h1 className="text-white text-[20px] tracking-normal -mb-6">Home / Buy Medicines</h1>
+                        <p className="text-white font-bold text-6xl tracking-wide mt-6">Purchase Medicines</p>
                         <div className="flex justify-center mt-8 p-5">
                             <button className="bg-green-600 border-2 border-green-600 tracking-wider text-white text-xl font-workSans rounded w-fit flex items-center justify-center py-2 px-5 hover:bg-transparent hover:border-green-600 transition-all ease-in">Get Started</button>
                             <p className="tracking-wider text-white font-workSans text-base w-fit flex items-center justify-center py-4 px-5 ml-4 cursor-pointer">Learn More</p>
@@ -85,32 +85,21 @@ const BuyMedicine = () => {
                                 </a>
                             </div>
                         </div>
-                        <div className="flex-1 flex-col justify-center items-center p-8 bg-white rounded-md shadow-md pt-[150px]">
+                        <div className="flex-1 flex-col justify-center items-center p-8 bg-white rounded-md shadow-md pt-[50px]">
                             <div className="mb-6">
-                                <h2 className="text-xl font-semibold">{medicine.medicine || 'Medicine Name'}</h2>
+                                <h2 className="text-2xl font-bold py-4">{medicine.medicine || 'Medicine Name'}</h2>
                                 <p><strong>Dosage:</strong> {medicine.dosage || 'N/A'}</p>
-                                <p><strong>Price:</strong> ${medicine.price ? medicine.price.toFixed(2) : 'N/A'}</p>
+                                <p><strong>Price:</strong> ${medicine.price ? medicine.price : 'N/A'}</p>
                                 <p><strong>Description:</strong> {medicine.description || 'No description available'}</p>
                             </div>
-
                             <div className="mb-6">
                                 <label htmlFor="quantity" className="block mb-2 font-semibold">Quantity:</label>
-                                <input
-                                    id="quantity"
-                                    type="number"
-                                    min="1"
-                                    value={quantity}
-                                    onChange={(e) => setQuantity(parseInt(e.target.value))}
-                                    className="border border-gray-300 p-2 rounded-lg w-full"
-                                />
+                                <input id="quantity" type="number" min="1" value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value))} className="border border-gray-300 p-2 rounded-lg w-full" />
                             </div>
-
-                            <button
-                                onClick={handlePurchase}
-                                className="py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-                            >
-                                Purchase
-                            </button>
+                            <div className="mb-6">
+                                <p className="text-xl font-semibold">Total Price: ${totalPrice.toFixed(2)}</p>
+                                <button onClick={handlePurchase} className="py-2 px-4 bg-green-500 text-white rounded-lg hover:bg-green-600 mt-2 transition-all 0.3s ease-in">Purchase</button>
+                            </div>
                         </div>
                     </div>
                 </div>

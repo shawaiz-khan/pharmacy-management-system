@@ -13,8 +13,7 @@ export default function NavBar() {
             <div className="container mx-auto flex justify-end items-end">
                 <div className="flex space-x-6 justify-end text-end">
                     <Link to="/" className="text-white hover:bg-green-700 hover:text-white-300 px-2 py-2 rounded-md transition duration-300 ease-in-out">Home</Link>
-                    <Link to="/medicine-search" className="text-white hover:bg-green-700 hover:text-white-300 px-2 py-2 rounded-md transition duration-300 ease-in-out">Medicine Search</Link>
-                    <Link to="/buy-medicine" className="text-white hover:bg-green-700 hover:text-white-300 px-2 py-2 rounded-md transition duration-300 ease-in-out">Buy Medicine</Link>
+                    <Link to="/medicine-search" className="text-white hover:bg-green-700 hover:text-white-300 px-2 py-2 rounded-md transition duration-300 ease-in-out">Buy Medicine</Link>
                     <Link to="/contact" className="text-white hover:bg-green-700 hover:text-white-300 px-2 py-2 rounded-md transition duration-300 ease-in-out">Contact</Link>
                     {isLoggedIn ? (
                         <>

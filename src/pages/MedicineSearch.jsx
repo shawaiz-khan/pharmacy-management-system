@@ -1,9 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
+import { useState, useRef } from 'react';
 import HeroImg from "../assets/images/hero.jpg";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import GoToTop from "../components/GoToTop";
-import { useState } from "react";
 import { medicines } from "../assets/data/medicinesData";
 import SnapIcon from '../assets/images/snap.svg';
 import GitIcon from '../assets/images/git.svg';
@@ -17,7 +17,7 @@ export default function Contact() {
     const [dosage, setDosage] = useState('');
     const [units, setUnits] = useState('');
     const [filteredMedicines, setFilteredMedicines] = useState([]);
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const searchResultsRef = useRef(null);
 
     const navigate = useNavigate();
 
@@ -30,10 +30,14 @@ export default function Contact() {
             return nameMatch && dosageMatch && unitsMatch;
         });
         setFilteredMedicines(filtered);
+
+        if (searchResultsRef.current) {
+            searchResultsRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
     };
 
     const handleBuyNowClick = (medicine) => {
-        navigate('/buy-medicine', { state: { medicine } });
+        navigate('/buy-medicine/', { state: { medicine }, hash: '#purchases' });
     };
 
     const clearSearch = () => {
@@ -101,27 +105,9 @@ export default function Contact() {
                         </div>
                         <div className="flex-1 flex-col justify-center items-center p-8 bg-white rounded-md shadow-md pt-[150px]">
                             <div className="flex flex-col space-y-4 mb-4">
-                                <input
-                                    type="text"
-                                    placeholder="Enter medicine name..."
-                                    value={medicineName}
-                                    onChange={(e) => setMedicineName(e.target.value)}
-                                    className="border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:border-blue-500"
-                                />
-                                <input
-                                    type="text"
-                                    placeholder="Enter dosage..."
-                                    value={dosage}
-                                    onChange={(e) => setDosage(e.target.value)}
-                                    className="border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:border-blue-500"
-                                />
-                                <input
-                                    type="text"
-                                    placeholder="Enter units..."
-                                    value={units}
-                                    onChange={(e) => setUnits(e.target.value)}
-                                    className="border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:border-blue-500"
-                                />
+                                <input type="text" placeholder="Enter medicine name..." value={medicineName} onChange={(e) => setMedicineName(e.target.value)} className="border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:border-green-500" />
+                                <input type="text" placeholder="Enter dosage..." value={dosage} onChange={(e) => setDosage(e.target.value)} className="border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:border-green-500" />
+                                <input type="text" placeholder="Enter units..." value={units} onChange={(e) => setUnits(e.target.value)} className="border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:border-green-500" />
                             </div>
                             <div className="flex items-center space-x-4">
                                 <button onClick={handleSearchSubmit} className="bg-green-500 text-white w-full py-2 rounded-md hover:bg-green-600 transition-all 0.3s ease-in">Search</button>
@@ -132,30 +118,28 @@ export default function Contact() {
                 </div>
             </section>
             {/* Display Section */}
-            {filteredMedicines.length > 0 && (
-                <section className="mt-8 px-4 h-full w-full bg-white">
-                    <h2 className="text-2xl font-bold mb-4">Display Medicines</h2>
-                    <ul className="space-y-4">
-                        {filteredMedicines.map(medicine => (
-                            <li key={medicine.id} className="border border-gray-200 p-4 rounded-md shadow-md">
-                                <h3 className="text-xl font-bold bg-green-200 rounded p-3">{medicine.medicine}</h3>
-                                <p><strong>Dosage:</strong> {medicine.dosage}</p>
-                                <p><strong>Usage:</strong> {medicine.usage}</p>
-                                <p><strong>Units:</strong> {medicine.units}</p>
-                                <p><strong>Category:</strong> {medicine.category}</p>
-                                <p>{medicine.description}</p>
-                                {isLoggedIn ? (
-                                    <>
-                                        <button onClick={() => handleBuyNowClick(medicine)} className="mt-4 bg-green-500 px-5 py-3 rounded-md text-white hover:bg-green-600 transition-all 0.3s ease-in">Buy Now</button>
-                                    </>
-                                ) : (
-                                    setIsLoggedIn(false)
-                                )}
-                            </li>
-                        ))}
-                    </ul>
-                </section>
-            )}
+            <div ref={searchResultsRef}>
+                {filteredMedicines.length > 0 && (
+                    <section className="mt-8 px-4 h-full w-full bg-white py-6">
+                        <h2 className="text-2xl font-bold mb-4">Display Medicines</h2>
+                        <ul className="space-y-4 mb-6">
+                            {filteredMedicines.map(medicine => (
+                                <li key={medicine.id} className="border border-gray-200 p-4 rounded-md shadow-md">
+                                    <h3 className="text-xl font-bold bg-green-200 rounded p-3 mb-4">{medicine.medicine}</h3>
+                                    <p><strong>Dosage:</strong> {medicine.dosage}</p>
+                                    <p><strong>Usage:</strong> {medicine.usage}</p>
+                                    <p><strong>Units:</strong> {medicine.units}</p>
+                                    <p><strong>Category:</strong> {medicine.category}</p>
+                                    <p className="mt-3">{medicine.description}</p>
+                                    <div>
+                                        <button onClick={() => handleBuyNowClick(medicine)} className="mt-4 bg-green-500 px-8 py-3 rounded-md text-white hover:bg-green-600 transition-all 0.3s ease-in">Buy Now</button>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+                )}
+            </div>
             {/* Footer Section  */}
             <section className="w-screen h-full px-5 py-0 flex flex-col gap-5 items-center bg-white">
                 <div>
