@@ -5,12 +5,32 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook, faKitMedical } from "@fortawesome/free-solid-svg-icons";
 import MedicineCategory from "../components/MedicineCategory";
-import { medicines } from "../assets/data/medicinesData";
 import MedicinesSlider from "../components/MedicinesSlider";
 import Footer from "../components/Footer";
 import GoToTop from "../components/GoToTop";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+    const [medicinesData, setMedicinesData] = useState([]);
+
+    useEffect(() => {
+        // Fetch data from the backend
+        const fetchMedicines = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/medicines');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setMedicinesData(data);
+            } catch (error) {
+                console.error('Error fetching medicines data:', error);
+            }
+        };
+
+        fetchMedicines();
+    }, []);
+
     return (
         <div>
             <main className='w-full h-full'>
@@ -68,7 +88,7 @@ export default function Home() {
                     <div className="w-full h-screen flex flex-col items-center justify-center">
                         <h1 className="text-green-900 font-bold text-4xl mb-5 text-center">In-Stock Medicines</h1>
                         <div className="w-full">
-                            <MedicinesSlider medicinesData={medicines} />
+                            <MedicinesSlider medicinesData={medicinesData} />
                         </div>
                         <div className="w-full justify-center flex text-center mt-5">
                             <h1 className="font-medium bg-green-600 border-2 border-green-600 p-2 rounded text-white hover:bg-transparent hover:border-2 hover:border-green-700 hover:text-green-800 transition-all 0.3s ease-in pl-10 pr-10"><Link to="/about">Explore Medicines<FontAwesomeIcon icon={faKitMedical} className="ml-2" /></Link></h1>
@@ -80,7 +100,7 @@ export default function Home() {
                     <div>
                         <h1 className="text-green-900 font-bold text-4xl mb-5 mt-5 justify-center items-center text-center">Medicine Categories</h1>
                         <div className="w-full">
-                            <MedicineCategory medicinesData={medicines} />
+                            <MedicineCategory medicinesData={medicinesData} />
                         </div>
                     </div>
                 </section>

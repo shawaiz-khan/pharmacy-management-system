@@ -1,20 +1,68 @@
-import { useState } from 'react';
-import { medicines } from '../assets/data/medicinesData';
+import { useState, useEffect } from 'react';
 
 const AddMedicines = () => {
-    const [medicinesList, setMedicinesList] = useState(medicines.map(med => med.medicine));
+    const [medicinesList, setMedicinesList] = useState([]);
     const [newMedicine, setNewMedicine] = useState('');
 
-    const handleAddMedicine = (e) => {
-        e.preventDefault();
-        if (newMedicine.trim() && !medicinesList.includes(newMedicine.trim())) {
-            setMedicinesList([...medicinesList, newMedicine.trim()]);
-            setNewMedicine('');
+    useEffect(() => {
+        // Fetch all medicines when the component mounts
+        fetchMedicines();
+    }, []);
+
+    const fetchMedicines = async () => {
+        try {
+            const response = await fetch('http://localhost:3000/medicines');
+            const data = await response.json();
+            setMedicinesList(data.map(med => med.medicine));
+        } catch (error) {
+            console.error('Error fetching medicines:', error);
         }
     };
 
-    const handleDeleteMedicine = (medicineToDelete) => {
-        setMedicinesList(medicinesList.filter(medicine => medicine !== medicineToDelete));
+    const handleAddMedicine = async (e) => {
+        e.preventDefault();
+        if (newMedicine.trim()) {
+            try {
+                const response = await fetch('http://localhost:3000/medicines', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        medicine: newMedicine.trim(),
+                        usage: '', // Add other fields if needed
+                        units: '',
+                        category: '',
+                        dosage: '',
+                        price: 0,
+                        manufacturer: '',
+                        description: '',
+                        categoryDescription: ''
+                    })
+                });
+                if (response.ok) {
+                    fetchMedicines(); // Refresh list after adding
+                    setNewMedicine('');
+                } else {
+                    console.error('Failed to add medicine');
+                }
+            } catch (error) {
+                console.error('Error adding medicine:', error);
+            }
+        }
+    };
+
+    const handleDeleteMedicine = async (medicineToDelete) => {
+        try {
+            const response = await fetch(`http://localhost:3000/medicines/${medicineToDelete.id}`, {
+                method: 'DELETE'
+            });
+            if (response.ok) {
+                fetchMedicines(); // Refresh list after deleting
+            } else {
+                console.error('Failed to delete medicine');
+            }
+        } catch (error) {
+            console.error('Error deleting medicine:', error);
+        }
     };
 
     return (

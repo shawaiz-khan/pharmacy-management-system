@@ -1,14 +1,15 @@
 /* eslint-disable no-undef */
 const express = require('express');
-const bodyParser = require('body-parser');
-const medicinesRoutes = require('./routes/medicines');
+const cors = require('cors'); // Import cors
 const app = express();
 const port = 3000;
 
-app.use(bodyParser.json());
+// Use cors middleware
+app.use(cors());
 
-// Use the medicines routes
-app.use('/medicines', medicinesRoutes);
+// Other middleware and routes
+app.use(express.json());
+app.use('/medicines', require('./routes/medicines'));
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
