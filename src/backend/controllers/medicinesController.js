@@ -53,6 +53,14 @@ exports.updateMedicine = (req, res) => {
 exports.deleteMedicine = (req, res) => {
     const { id } = req.params;
 
+    // Log the id to verify it
+    console.log('Deleting medicine with id:', id);
+
+    if (!id) {
+        res.status(400).send('Medicine ID is required');
+        return;
+    }
+
     medicineModel.deleteMedicine(id, (err, result) => {
         if (err) {
             console.error('Error in controller:', err);

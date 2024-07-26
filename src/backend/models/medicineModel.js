@@ -1,36 +1,86 @@
 /* eslint-disable no-undef */
-const db = require('../utils/db');
+const db = require('../utils/db'); // Ensure this is your database connection file
 
-// Get all medicines
 exports.getAllMedicines = (callback) => {
-    const sql = 'SELECT * FROM medicines';
-    db.query(sql, (err, results) => {
-        callback(err, results);
+    const query = 'SELECT * FROM medicines';
+    db.execute(query, (err, results) => {
+        if (err) {
+            return callback(err, null);
+        }
+        callback(null, results);
     });
 };
 
-// Add a new medicine
 exports.addMedicine = (newMedicine, callback) => {
-    const sql = 'INSERT INTO medicines (medicine, usage, units, category, dosage, price, manufacturer, description, categoryDescription) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
-    const values = [newMedicine.medicine, newMedicine.usage, newMedicine.units, newMedicine.category, newMedicine.dosage, newMedicine.price, newMedicine.manufacturer, newMedicine.description, newMedicine.categoryDescription];
-    db.query(sql, values, (err, result) => {
-        callback(err, result);
+    const query = `
+        INSERT INTO medicines (medicine, \`usage\`, units, category, dosage, price, manufacturer, description, categoryDescription)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+    const values = [
+        newMedicine.medicine,
+        newMedicine.usage,
+        newMedicine.units,
+        newMedicine.category,
+        newMedicine.dosage,
+        newMedicine.price,
+        newMedicine.manufacturer,
+        newMedicine.description,
+        newMedicine.categoryDescription
+    ];
+
+    db.execute(query, values, (err, results) => {
+        if (err) {
+            return callback(err, null);
+        }
+        callback(null, results);
     });
 };
 
-// Update a medicine by ID
 exports.updateMedicine = (id, updatedMedicine, callback) => {
-    const sql = 'UPDATE medicines SET medicine = ?, usage = ?, units = ?, category = ?, dosage = ?, price = ?, manufacturer = ?, description = ?, categoryDescription = ? WHERE id = ?';
-    const values = [updatedMedicine.medicine, updatedMedicine.usage, updatedMedicine.units, updatedMedicine.category, updatedMedicine.dosage, updatedMedicine.price, updatedMedicine.manufacturer, updatedMedicine.description, updatedMedicine.categoryDescription, id];
-    db.query(sql, values, (err, result) => {
-        callback(err, result);
+    const query = `
+        UPDATE medicines
+        SET medicine = ?, \`usage\` = ?, units = ?, category = ?, dosage = ?, price = ?, manufacturer = ?, description = ?, categoryDescription = ?
+        WHERE id = ?
+    `;
+    const values = [
+        updatedMedicine.medicine,
+        updatedMedicine.usage,
+        updatedMedicine.units,
+        updatedMedicine.category,
+        updatedMedicine.dosage,
+        updatedMedicine.price,
+        updatedMedicine.manufacturer,
+        updatedMedicine.description,
+        updatedMedicine.categoryDescription,
+        id
+    ];
+
+    db.execute(query, values, (err, results) => {
+        if (err) {
+            return callback(err, null);
+        }
+        callback(null, results);
+    });
+};
+
+// Delete a medicine by name
+exports.deleteMedicineByName = (name, callback) => {
+    const query = 'DELETE FROM medicines WHERE medicine = ?';
+    db.execute(query, [name], (err, results) => {
+        if (err) {
+            return callback(err, null);
+        }
+        callback(null, results);
     });
 };
 
 // Delete a medicine by ID
 exports.deleteMedicine = (id, callback) => {
-    const sql = 'DELETE FROM medicines WHERE id = ?';
-    db.query(sql, [id], (err, result) => {
-        callback(err, result);
+    const query = 'DELETE FROM medicines WHERE id = ?';
+    db.execute(query, [id], (err, results) => {
+        if (err) {
+            return callback(err, null);
+        }
+        callback(null, results);
     });
 };
