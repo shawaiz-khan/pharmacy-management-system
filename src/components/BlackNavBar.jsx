@@ -1,9 +1,52 @@
 import { Link } from 'react-router-dom';
 import Logo from '../assets/logos/logo-5.png';
-import { useState } from 'react';
+import { useEffect, useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 export default function BlackNavBar() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+    console.log('AuthContext:', { isLoggedIn, setIsLoggedIn });
+
+    useEffect(() => {
+        // Fetch login status from backend
+        const checkLoginStatus = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/api/auth/status', {
+                    method: 'GET',
+                    credentials: 'include' // Ensures cookies are sent with the request
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setIsLoggedIn(data.isLoggedIn);
+                } else {
+                    setIsLoggedIn(false);
+                }
+            } catch (error) {
+                console.error('Error fetching login status:', error);
+                setIsLoggedIn(false);
+            }
+        };
+
+        checkLoginStatus();
+    }, [setIsLoggedIn]);
+
+    const handleLogout = async () => {
+        try {
+            const response = await fetch('http://localhost:3000/api/auth/logout', {
+                method: 'POST',
+                credentials: 'include' // Ensures cookies are sent with the request
+            });
+
+            if (response.ok) {
+                setIsLoggedIn(false);
+            } else {
+                console.error('Error logging out');
+            }
+        } catch (error) {
+            console.error('Error logging out:', error);
+        }
+    };
 
     return (
         <nav className="w-full text-[#fff] z-50 relative py-0 px-20 font-workSans flex justify-between items-center bg-transparent">
@@ -18,7 +61,7 @@ export default function BlackNavBar() {
                     {isLoggedIn ? (
                         <>
                             <Link to="/dashboard/overview" className="text-black hover:bg-green-700 hover:text-white px-2 py-2 rounded-md transition duration-300 ease-in-out">Dashboard</Link>
-                            <button onClick={() => setIsLoggedIn(false)} className="text-black hover:bg-green-700 hover:text-white px-2 py-2 rounded-md transition duration-300 ease-in-out">Logout</button>
+                            <button onClick={handleLogout} className="text-black hover:bg-green-700 hover:text-white px-2 py-2 rounded-md transition duration-300 ease-in-out">Logout</button>
                         </>
                     ) : (
                         <Link to="/login" className="text-black hover:bg-green-700 hover:text-white px-2 py-2 rounded-md transition duration-300 ease-in-out">Login / Register</Link>

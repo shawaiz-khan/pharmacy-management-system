@@ -21,6 +21,8 @@ exports.addMedicine = (req, res) => {
         medicine, usage, units, category, dosage, price, manufacturer, description, categoryDescription
     };
 
+    console.log('Adding Medicine with name:', medicine);
+
     medicineModel.addMedicine(newMedicine, (err, result) => {
         if (err) {
             console.error('Error in controller:', err);
@@ -38,6 +40,8 @@ exports.updateMedicine = (req, res) => {
     const updatedMedicine = {
         medicine, usage, units, category, dosage, price, manufacturer, description, categoryDescription
     };
+
+    console.log('Updating medicine with name:', medicine);
 
     medicineModel.updateMedicine(id, updatedMedicine, (err, result) => {
         if (err) {

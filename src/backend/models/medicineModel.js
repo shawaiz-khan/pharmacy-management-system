@@ -63,16 +63,6 @@ exports.updateMedicine = (id, updatedMedicine, callback) => {
     });
 };
 
-// Delete a medicine by name
-exports.deleteMedicineByName = (name, callback) => {
-    const query = 'DELETE FROM medicines WHERE medicine = ?';
-    db.execute(query, [name], (err, results) => {
-        if (err) {
-            return callback(err, null);
-        }
-        callback(null, results);
-    });
-};
 
 // Delete a medicine by ID
 exports.deleteMedicine = (id, callback) => {

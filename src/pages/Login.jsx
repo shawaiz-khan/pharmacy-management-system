@@ -1,9 +1,35 @@
+import { useState } from 'react';
 import BlackNavBar from "../components/BlackNavBar";
 import GoToTop from "../components/GoToTop";
 import LoginImg from "../assets/images/log.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Contact() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('http://localhost:3000/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+            const result = await response.json();
+            if (response.ok) {
+                // Handle successful login, e.g., redirect to dashboard
+                navigate('/dashboard');
+            } else {
+                setError(result.message);
+            }
+        } catch (error) {
+            setError('An error occurred. Please try again.');
+        }
+    };
+
     return (
         <main className="bg-green-500/20">
             <div className="w-full">
@@ -15,18 +41,19 @@ export default function Contact() {
                     <div className="md:w-1/2 px-5 mr-4">
                         <h2 className="text-2xl font-bold text-[#002D74]">Login</h2>
                         <p className="text-sm mt-4 text-[#002D74]">If you have an account, please login</p>
-                        <form className="mt-6" action="#" method="POST">
+                        <form onSubmit={handleSubmit} className="mt-6">
+                            {error && <p className="text-red-500">{error}</p>}
                             <div>
                                 <label className="block text-gray-700">Email Address</label>
-                                <input type="email" placeholder="Enter Email Address" className="w-full px-4 py-3 rounded-md bg-gray-200 mt-2 border focus:border-green-500 focus:bg-white focus:outline-none" autoFocus autoComplete="on" required />
+                                <input type="email" placeholder="Enter Email Address" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-3 rounded-md bg-gray-200 mt-2 border focus:border-green-500 focus:bg-white focus:outline-none" autoFocus autoComplete="on" required />
                             </div>
 
                             <div className="mt-4">
                                 <label className="block text-gray-700">Password</label>
-                                <input type="password" placeholder="Enter Password" minLength="6" className="w-full px-4 py-3 rounded-md bg-gray-200 mt-2 border focus:border-green-500 focus:bg-white focus:outline-none" required />
+                                <input type="password" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} minLength="6" className="w-full px-4 py-3 rounded-md bg-gray-200 mt-2 border focus:border-green-500 focus:bg-white focus:outline-none" required />
                             </div>
 
-                            <button type="submit" className="w-full block transition-all 0.3s ease-in bg-green-500 hover:bg-green-400 focus:bg-green-400 text-white font-semibold rounded px-4 py-3 mt-6" >Log In</button>
+                            <button type="submit" className="w-full block transition-all 0.3s ease-in bg-green-500 hover:bg-green-400 focus:bg-green-400 text-white font-semibold rounded px-4 py-3 mt-6">Log In</button>
                             
                             <div className="text-right mt-2">
                                 <a href="#" className="text-sm font-semibold text-gray-700 hover:text-green-700 focus:text-green-700">Forgot Password?</a>
@@ -69,5 +96,5 @@ export default function Contact() {
             {/* Go To Top Component  */}
             <GoToTop />
         </main>
-    )
+    );
 }
