@@ -15,4 +15,10 @@ router.put('/:id', medicinesController.updateMedicine);
 // Route to delete a medicine by ID
 router.delete('/:id', medicinesController.deleteMedicine);
 
+router.get('/stockAlerts', (req, res, next) => {
+    console.log('GET /api/stockAlerts called');
+    next();
+}, medicinesController.getLowStockAlerts);
+
+
 module.exports = router;

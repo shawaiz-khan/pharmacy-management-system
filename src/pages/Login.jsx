@@ -24,7 +24,7 @@ export default function Contact() {
             const result = await response.json();
             if (response.ok) {
                 setIsLoggedIn(true);
-                navigate('/dashboard');
+                navigate('/medicine-search');
             } else {
                 setError(result.message);
             }

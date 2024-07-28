@@ -22,7 +22,7 @@ const AddMedicines = () => {
 
     const fetchMedicines = async () => {
         try {
-            const response = await fetch('http://localhost:3000/medicines');
+            const response = await fetch('http://localhost:3000/api/medicines');
             const data = await response.json();
             setMedicinesList(data); // Ensure data includes IDs
         } catch (error) {

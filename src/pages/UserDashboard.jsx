@@ -6,6 +6,7 @@ import Overview from "../components/Overview";
 import Transactions from "../components/Transactions";
 import TransactionDetails from "../components/TransactionDetails";
 import NewMedicines from "../components/AddMedicines";
+import TransactionForm from "../components/TransactionForm"; // Import the TransactionForm component
 
 export default function UserDashBoard() {
     return (
@@ -43,13 +44,13 @@ export default function UserDashBoard() {
                         </div>
                         <style>
                             {`
-                                        .glassmorphism {
-                                            background: green-700;
-                                            border: 1px solid rgba(255, 255, 255, 0.2);
-                                            backdrop-filter: blur(10px);
-                                            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                                        }
-                                `}
+                                .glassmorphism {
+                                    background: green-700;
+                                    border: 1px solid rgba(255, 255, 255, 0.2);
+                                    backdrop-filter: blur(10px);
+                                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                                }
+                            `}
                         </style>
                     </div>
                     {/* Dashboard Section */}
@@ -59,8 +60,9 @@ export default function UserDashBoard() {
                                 <Routes>
                                     <Route path="overview" element={<Overview />} />
                                     <Route path="transactions" element={<Transactions />} />
-                                    <Route path="transactions/:patientID" element={<TransactionDetails />} />
                                     <Route path="new-medicines" element={<NewMedicines />} />
+                                    <Route path="transactions/add" element={<TransactionForm />} />
+                                    <Route path="/transactions/:patientID" element={<TransactionDetails />} />
                                 </Routes>
                             </div>
                         </div>

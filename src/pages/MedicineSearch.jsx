@@ -1,43 +1,54 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import HeroImg from "../assets/images/hero.jpg";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import GoToTop from "../components/GoToTop";
-import { medicines } from "../assets/data/medicinesData";
 import SnapIcon from '../assets/images/snap.svg';
 import GitIcon from '../assets/images/git.svg';
 import InstaIcon from '../assets/images/insta.svg';
 import WebIcon from '../assets/images/webs.svg';
 import LinkedIcon from '../assets/images/linked.svg';
-import { useNavigate } from "react-router-dom";
+import { AuthContext } from '../context/AuthContext'; // Import AuthContext
 
-export default function Contact() {
+export default function MedicineSearch() {
     const [medicineName, setMedicineName] = useState('');
     const [dosage, setDosage] = useState('');
     const [units, setUnits] = useState('');
     const [filteredMedicines, setFilteredMedicines] = useState([]);
     const searchResultsRef = useRef(null);
-
     const navigate = useNavigate();
+    const { isLoggedIn } = useContext(AuthContext); // Get isLoggedIn from AuthContext
 
-    const handleSearchSubmit = () => {
-        const filtered = medicines.filter((medicine) => {
-            const nameMatch = !medicineName || medicine.medicine.toLowerCase().includes(medicineName.toLowerCase());
-            const dosageMatch = !dosage || medicine.dosage.toLowerCase().includes(dosage.toLowerCase());
-            const unitsMatch = !units || medicine.units.toLowerCase().includes(units.toLowerCase());
+    const handleSearchSubmit = async () => {
+        try {
+            const response = await fetch(`http://localhost:3000/api/medicines?name=${medicineName}&dosage=${dosage}&units=${units}`, {
+                method: 'GET',
+                credentials: 'include'
+            });
 
-            return nameMatch && dosageMatch && unitsMatch;
-        });
-        setFilteredMedicines(filtered);
+            if (response.ok) {
+                const data = await response.json();
+                setFilteredMedicines(data);
 
-        if (searchResultsRef.current) {
-            searchResultsRef.current.scrollIntoView({ behavior: 'smooth' });
+                if (searchResultsRef.current) {
+                    searchResultsRef.current.scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                console.error('Error fetching medicines:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error fetching medicines:', error);
         }
     };
 
-    const handleBuyNowClick = (medicine) => {
-        navigate('/buy-medicine/', { state: { medicine }, hash: '#purchases' });
+    const handleBuyNowClick = async (medicine) => {
+        if (isLoggedIn) {
+            navigate('/dashboard/transactions/add', { state: { medicine } });
+        } else {
+            navigate('/login');
+        }
     };
 
     const clearSearch = () => {
@@ -125,31 +136,21 @@ export default function Contact() {
                         <ul className="space-y-4 mb-6">
                             {filteredMedicines.map(medicine => (
                                 <li key={medicine.id} className="border border-gray-200 p-4 rounded-md shadow-md">
-                                    <h3 className="text-xl font-bold bg-green-200 rounded p-3 mb-4">{medicine.medicine}</h3>
-                                    <p><strong>Dosage:</strong> {medicine.dosage}</p>
-                                    <p><strong>Usage:</strong> {medicine.usage}</p>
-                                    <p><strong>Units:</strong> {medicine.units}</p>
-                                    <p><strong>Category:</strong> {medicine.category}</p>
-                                    <p className="mt-3">{medicine.description}</p>
-                                    <div>
-                                        <button onClick={() => handleBuyNowClick(medicine)} className="mt-4 bg-green-500 px-8 py-3 rounded-md text-white hover:bg-green-600 transition-all 0.3s ease-in">Buy Now</button>
-                                    </div>
+                                    <h3 className="text-xl font-bold bg-green-200 py-2 px-2 rounded-md">{medicine.medicine}</h3>
+                                    <p className="mt-2 text-lg"><span className="font-bold text-lg">Dosage:</span> {medicine.dosage}</p>
+                                    <p className="mt-2 text-lg"><span className="font-bold text-lg">Units:</span> {medicine.units}</p>
+                                    <p className="mt-2 text-lg"><span className="font-bold text-lg">Price:</span> ${medicine.price}</p>
+                                    <button onClick={() => handleBuyNowClick(medicine)} className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 mt-4 transition-all 0.3s ease-in">Buy Now</button>
                                 </li>
                             ))}
                         </ul>
                     </section>
                 )}
             </div>
-            {/* Footer Section  */}
-            <section className="w-screen h-full px-5 py-0 flex flex-col gap-5 items-center bg-white">
-                <div>
-                    <div className="w-screen">
-                        <Footer />
-                    </div>
-                </div>
-            </section>
-            {/* Go To Top Component  */}
+            {/* Footer Section */}
+            <Footer />
+            {/* GoToTop Section */}
             <GoToTop />
         </main>
-    )
+    );
 }

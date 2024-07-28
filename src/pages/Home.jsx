@@ -17,7 +17,7 @@ export default function Home() {
         // Fetch data from the backend
         const fetchMedicines = async () => {
             try {
-                const response = await fetch('http://localhost:3000/medicines');
+                const response = await fetch('http://localhost:3000/api/medicines');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
