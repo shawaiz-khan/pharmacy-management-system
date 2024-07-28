@@ -1,36 +1,34 @@
 /* eslint-disable react/prop-types */
 import { createContext, useState, useEffect } from 'react';
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
-const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
-        const fetchLoginStatus = async () => {
+        const checkLoginStatus = async () => {
             try {
                 const response = await fetch('http://localhost:3000/api/auth/status', {
-                    method: 'GET',
-                    credentials: 'include', // Important for session cookies
+                    credentials: 'include',
                 });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    setIsLoggedIn(data.isLoggedIn);
+                const data = await response.json();
+                if (data.isLoggedIn) {
+                    setIsLoggedIn(true);
+                    setUser(data.user);
                 }
             } catch (error) {
-                console.error('Error fetching login status:', error);
+                console.error('Error checking login status:', error);
             }
         };
 
-        fetchLoginStatus();
+        checkLoginStatus();
     }, []);
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+        <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, user, setUser }}>
             {children}
         </AuthContext.Provider>
     );
 };
-
-export { AuthContext, AuthProvider };

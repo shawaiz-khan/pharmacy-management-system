@@ -1,16 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 function DashboardNavBar() {
     const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const checkLoginStatus = async () => {
             try {
                 const response = await fetch('http://localhost:3000/api/auth/status', {
                     method: 'GET',
-                    credentials: 'include' // Ensures cookies are sent with the request
+                    credentials: 'include'
                 });
 
                 if (response.ok) {
@@ -32,11 +33,12 @@ function DashboardNavBar() {
         try {
             const response = await fetch('http://localhost:3000/api/auth/logout', {
                 method: 'POST',
-                credentials: 'include' // Ensures cookies are sent with the request
+                credentials: 'include'
             });
 
             if (response.ok) {
                 setIsLoggedIn(false);
+                navigate('/'); // Navigate to the home page after successful logout
             } else {
                 console.error('Error logging out');
             }

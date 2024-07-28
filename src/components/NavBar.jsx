@@ -1,19 +1,18 @@
 import { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../assets/logos/logo-1.png';
 import { AuthContext } from '../context/AuthContext';
 
 export default function NavBar() {
     const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
-    console.log('AuthContext:', { isLoggedIn, setIsLoggedIn });
+    const navigate = useNavigate();
 
     useEffect(() => {
-        // Fetch login status from backend
         const checkLoginStatus = async () => {
             try {
                 const response = await fetch('http://localhost:3000/api/auth/status', {
                     method: 'GET',
-                    credentials: 'include' // Ensures cookies are sent with the request
+                    credentials: 'include'
                 });
 
                 if (response.ok) {
@@ -35,11 +34,12 @@ export default function NavBar() {
         try {
             const response = await fetch('http://localhost:3000/api/auth/logout', {
                 method: 'POST',
-                credentials: 'include' // Ensures cookies are sent with the request
+                credentials: 'include'
             });
 
             if (response.ok) {
                 setIsLoggedIn(false);
+                navigate('/'); // Navigate to the home page after successful logout
             } else {
                 console.error('Error logging out');
             }

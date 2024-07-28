@@ -1,37 +1,32 @@
 /* eslint-disable no-undef */
 const express = require('express');
-const cors = require('cors'); // Import cors
-const session = require('express-session'); // Import session
+const session = require('express-session');
+const cors = require('cors');
 const app = express();
-const port = 3000;
 
-// Use cors middleware
+// Import your routes
+const authRoutes = require('./routes/auth'); // Adjust path as necessary
+const medicinesRoutes = require('./routes/medicines'); // Adjust path as necessary
+
+// Middleware
 app.use(cors({
-    origin: 'http://localhost:5173', // Adjust according to your frontend port
-    credentials: true // Allow credentials to be included in CORS requests
+    origin: 'http://localhost:5173', // Your frontend URL
+    credentials: true
 }));
-
-// Middleware to parse JSON
 app.use(express.json());
-
-// Configure session middleware
 app.use(session({
-    secret: 'Shawaiz@0015', // Change this to a strong secret key
+    secret: 'your-secret-key',
     resave: false,
     saveUninitialized: true,
-    cookie: {
-        secure: false, // Set to true if using https
-        httpOnly: true,
-        maxAge: 60000 // Session expiration time in milliseconds
-    }
+    cookie: { secure: false } // Set to true with HTTPS in production
 }));
 
-// Define routes
-app.use('/medicines', require('./routes/medicines'));
-app.use('/api', require('./routes/login'));
-app.use('/api', require('./routes/register'));
-app.use('/api', require('./routes/auth')); // Add the auth route
+// Use routes
+app.use('/api/auth', authRoutes);
+app.use('/api/medicines', medicinesRoutes);
 
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });

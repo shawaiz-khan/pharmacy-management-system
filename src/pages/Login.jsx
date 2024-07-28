@@ -1,31 +1,35 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import BlackNavBar from "../components/BlackNavBar";
 import GoToTop from "../components/GoToTop";
 import LoginImg from "../assets/images/log.jpg";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from '../context/AuthContext';
 
 export default function Contact() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const { setIsLoggedIn } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:3000/api/login', {
+            const response = await fetch('http://localhost:3000/api/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
+                body: JSON.stringify({ email, password }),
+                credentials: 'include'
             });
             const result = await response.json();
             if (response.ok) {
-                // Handle successful login, e.g., redirect to dashboard
+                setIsLoggedIn(true);
                 navigate('/dashboard');
             } else {
                 setError(result.message);
             }
         } catch (error) {
+            console.error('Error during login:', error);
             setError('An error occurred. Please try again.');
         }
     };
@@ -35,7 +39,6 @@ export default function Contact() {
             <div className="w-full">
                 <BlackNavBar />
             </div>
-            {/* Login Form Section  */}
             <section className="border-red-500 min-h-screen flex items-center justify-center">
                 <div className="bg-gray-100 p-5 flex rounded-2xl shadow-lg max-w-3xl">
                     <div className="md:w-1/2 px-5 mr-4">
@@ -47,25 +50,20 @@ export default function Contact() {
                                 <label className="block text-gray-700">Email Address</label>
                                 <input type="email" placeholder="Enter Email Address" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-3 rounded-md bg-gray-200 mt-2 border focus:border-green-500 focus:bg-white focus:outline-none" autoFocus autoComplete="on" required />
                             </div>
-
                             <div className="mt-4">
                                 <label className="block text-gray-700">Password</label>
                                 <input type="password" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} minLength="6" className="w-full px-4 py-3 rounded-md bg-gray-200 mt-2 border focus:border-green-500 focus:bg-white focus:outline-none" required />
                             </div>
-
                             <button type="submit" className="w-full block transition-all 0.3s ease-in bg-green-500 hover:bg-green-400 focus:bg-green-400 text-white font-semibold rounded px-4 py-3 mt-6">Log In</button>
-                            
                             <div className="text-right mt-2">
                                 <a href="#" className="text-sm font-semibold text-gray-700 hover:text-green-700 focus:text-green-700">Forgot Password?</a>
                             </div>
                         </form>
-
                         <div className="mt-7 grid grid-cols-3 items-center text-gray-500">
                             <hr className="border-gray-500" />
                             <p className="text-center text-sm">OR</p>
                             <hr className="border-gray-500" />
                         </div>
-
                         <button className="mb-5 bg-white hover:bg-green-200 border border-green-200 py-2 w-full rounded mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 48 48">
                                 <defs>
@@ -81,19 +79,16 @@ export default function Contact() {
                             </svg>
                             <span className="ml-4">Login with Google</span>
                         </button>
-
                         <div className="text-sm flex justify-between items-center mt-3">
                             <p>If you do not have an account...</p>
                             <Link to="/register"><button className="py-2 px-5 ml-3 bg-white border rounded hover:scale-110 hover:bg-green-500 hover:text-white duration-300 border-green-400">Register</button></Link>
                         </div>
                     </div>
-
                     <div className="w-1/2 md:block hidden pt-8 pb-8">
                         <img src={LoginImg} className="rounded-2xl" alt="Login Image" />
                     </div>
                 </div>
             </section>
-            {/* Go To Top Component  */}
             <GoToTop />
         </main>
     );
