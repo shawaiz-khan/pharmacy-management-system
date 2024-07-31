@@ -18,13 +18,9 @@ router.get('/:patientID', (req, res, next) => {
     next();
 }, transactionController.getTransactionsByPatientID);
 
-// New route to get total transactions
 router.get('/total', (req, res, next) => {
     console.log('GET /api/transactions/total called');
     next();
 }, transactionController.getTotalTransactions);
-
-router.get('/sales', transactionsController.getSalesData);
-
 
 module.exports = router;

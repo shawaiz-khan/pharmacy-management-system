@@ -74,25 +74,3 @@ exports.deleteMedicine = (req, res) => {
         res.send('Medicine deleted successfully');
     });
 };
-
-exports.getLowStockAlerts = (req, res) => {
-    const threshold = 10;  // Example threshold for low stock
-    const query = `
-        SELECT 
-            name, 
-            quantity 
-        FROM 
-            medicines
-        WHERE 
-            quantity < ?
-    `;
-
-    db.query(query, [threshold], (error, results) => {
-        if (error) {
-            console.error('Error fetching low stock alerts:', error);
-            res.status(500).json({ error: 'Failed to fetch low stock alerts' });
-        } else {
-            res.status(200).json(results);
-        }
-    });
-};

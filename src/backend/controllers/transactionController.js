@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-const db = require('../utils/db'); // Adjust path as necessary
+const db = require('../utils/db');
 
 const getAllTransactions = (req, res) => {
     console.log('Fetching all transactions');
@@ -15,7 +15,6 @@ const getAllTransactions = (req, res) => {
         res.status(200).json(results);
     });
 };
-
 
 const getTransactionsByPatientID = (req, res) => {
     const { patientID } = req.params;
@@ -64,33 +63,9 @@ const getTotalTransactions = (req, res) => {
     });
 };
 
-const getSalesData = (req, res) => {
-    console.log('Fetching sales data');
-
-    const query = `
-        SELECT 
-            COUNT(*) AS totalTransactions,
-            SUM(price) AS totalSales
-        FROM 
-            transactions_data
-    `;
-
-    db.query(query, (error, results) => {
-        if (error) {
-            console.error('Error executing query:', query);
-            console.error('Error details:', error);
-            res.status(500).json({ error: 'Failed to fetch sales data' });
-        } else {
-            console.log('Query executed successfully:', results);
-            res.status(200).json(results[0]);
-        }
-    });
-};
-
 module.exports = {
     getAllTransactions,
     getTransactionsByPatientID,
     addTransaction,
     getTotalTransactions,
-    getSalesData  // Export the new function
 };
