@@ -4,6 +4,7 @@ import GitIcon from '../assets/images/git.svg';
 import InstaIcon from '../assets/images/insta.svg';
 import WebIcon from '../assets/images/webs.svg';
 import LinkedIcon from '../assets/images/linked.svg';
+import { Link } from "react-router-dom";
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -17,9 +18,7 @@ export default function Footer() {
                 </h2>
                 <div className="mt-8 flex lg:flex-shrink-0 lg:mt-0">
                     <div className="inline-flex rounded-md shadow">
-                        <a href="#" className="bg-green-600 border-2 border-transparent rounded-md py-4 px-6 inline-flex items-center justify-center text-lg font-medium text-white hover:bg-transparent hover:border-2 hover:border-green-600 transition-all 0.3s ease-in focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                            Search Medicine
-                        </a>
+                        <Link to="/medicine-search"><a className="bg-green-600 border-2 border-transparent rounded-md py-4 px-6 inline-flex items-center justify-center text-lg font-medium text-white hover:bg-transparent hover:border-2 hover:border-green-600 transition-all 0.3s ease-in focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Search Medicine</a></Link>
                     </div>
                 </div>
             </div>
@@ -38,18 +37,19 @@ export default function Footer() {
                         <div>
                             <p className="font-semibold text-black">Quick Links</p>
                             <div className="flex flex-col items-start mt-5 space-y-2">
-                                <a href="#" className="text-black transition-colors duration-300 hover:underline">Home</a>
-                                <a href="#" className="text-black transition-colors duration-300 hover:underline">Dashboard</a>
-                                <a href="#" className="text-black transition-colors duration-300 hover:underline">Stats</a>
+                                <Link to='/'><a className="text-black transition-colors duration-300 hover:underline">Home</a></Link>
+                                <Link to='/dashboard/overview'><a className="text-black transition-colors duration-300 hover:underline">Dashboard</a></Link>
+                                <Link to='/contact'><a className="text-black transition-colors duration-300 hover:underline">Contact</a></Link>
                             </div>
                         </div>
 
                         <div>
                             <p className="font-semibold text-black">Info Links</p>
                             <div className="flex flex-col items-start mt-5 space-y-2">
-                                <a href="#" className="text-black transition-colors duration-300 hover:underline">Retail & E-Commerce</a>
-                                <a href="#" className="text-black transition-colors duration-300 hover:underline">Information Technology</a>
-                                <a href="#" className="text-black transition-colors duration-300 hover:underline">Finance & Insurance</a>
+                                <Link to='/'><a className="text-black transition-colors duration-300 hover:underline">Home</a></Link>
+                                <Link to='/about'><a className="text-black transition-colors duration-300 hover:underline">About</a></Link>
+                                <Link to='/new-medicines'><a className="text-black transition-colors duration-300 hover:underline">Add Medicines</a></Link>
+                                <Link to='/contact'><a className="text-black transition-colors duration-300 hover:underline">Contact</a></Link>
                             </div>
                         </div>
                     </div>
@@ -62,13 +62,13 @@ export default function Footer() {
                         </a>
                         {/* Footer Icons  */}
                         <div className="flex -mx-2">
-                            <a href="#" className="mx-2 text-black transition-colors duration-300 w-10 h-10 flex items-center justify-center" aria-label="GitHub">
+                            <a href="https://github.com/shawaiz-khan" className="mx-2 text-black transition-colors duration-300 w-10 h-10 flex items-center justify-center" aria-label="GitHub">
                                 <img src={GitIcon} alt="GitHub Icon" className='object-contain w-full h-full hover:scale-110 transition-all 0.3s ease-in' />
                             </a>
                             <a href="https://devdigitals.org/" className="mx-2 text-black transition-colors duration-300 w-10 h-10 flex items-center justify-center" aria-label="Portfolio">
                                 <img src={WebIcon} alt="Portfolio Icon" className='object-contain w-full h-full hover:scale-110 transition-all 0.3s ease-in' />
                             </a>
-                            <a href="#" className="mx-2 text-black transition-colors duration-300 w-10 h-10 flex items-center justify-center" aria-label="LinkedIn">
+                            <a href="https://www.linkedin.com/in/bizshawaizkhan/" className="mx-2 text-black transition-colors duration-300 w-10 h-10 flex items-center justify-center" aria-label="LinkedIn">
                                 <img src={LinkedIcon} alt="LinkedIn Icon" className='object-contain w-full h-full hover:scale-110 transition-all 0.3s ease-in' />
                             </a>
                             <a href="#" className="mx-2 text-black transition-colors duration-300 w-10 h-10 flex items-center justify-center" aria-label="Snapchat">

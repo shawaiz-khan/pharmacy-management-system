@@ -1,10 +1,10 @@
 [Project]
-FileName=contactApi.dev
-Name=contactApi
+FileName=contact-submission.dev
+Name=contact-submissons
 Type=1
 Ver=2
 ObjFiles=
-Includes="C:\Program Files\MySQL\MySQL Server 8.0\include";"C:\Program Files\MySQL\MySQL Server 8.0\bin"
+Includes="C:\Program Files\MySQL\MySQL Server 8.0\bin";"C:\Program Files\MySQL\MySQL Server 8.0\include"
 Libs="C:\Program Files\MySQL\MySQL Server 8.0\lib"
 PrivateResource=
 ResourceIncludes=
@@ -19,7 +19,7 @@ ObjectOutput=
 LogOutput=
 LogOutputEnabled=0
 OverrideOutput=0
-OverrideOutputName=contactApi.exe
+OverrideOutputName=contact-submission.exe
 HostApplication=
 UseCustomMakefile=0
 CustomMakefile=
@@ -51,7 +51,7 @@ AutoIncBuildNr=0
 SyncProduct=1
 
 [Unit1]
-FileName=contactForm.cpp
+FileName=contact_handler.cpp
 CompileCpp=1
 Folder=
 Compile=1
