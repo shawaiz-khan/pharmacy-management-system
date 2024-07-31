@@ -2,8 +2,32 @@ import HeroImg from "../assets/images/hero.jpg";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import GoToTop from "../components/GoToTop";
+import { useState } from "react";
 
 export default function Contact() {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+    const [sendCopy, setSendCopy] = useState(false);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        // Validate form data here if needed
+        const response = await fetch('http://localhost:8080/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name, email, message, sendCopy }),
+        });
+
+        if (response.ok) {
+            alert('Message sent successfully');
+        } else {
+            alert('Failed to send message');
+        }
+    };
     return (
         <main>
             <div
@@ -36,49 +60,76 @@ export default function Contact() {
                     <div className="block rounded-lg bg-[hsla(0,0%,100%,0.8)] px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:py-16 md:px-12 -mt-[100px] backdrop-blur-[30px] border border-gray-300">
                         <div className="flex flex-wrap">
                             <div className="mb-12 w-full md:px-3 lg:mb-0 lg:w-5/12 lg:px-6">
-                                <form>
+                                <form onSubmit={handleSubmit} className="p-4">
                                     <div className="relative mb-6">
-                                        <input type="text" className="peer block min-h-[auto] w-full rounded border-2 bg-transparent py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" id="nameInput" />
-                                        <label className="pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary" htmlFor="nameInput" >Name</label>
+                                        <input
+                                            type="text"
+                                            value={name}
+                                            onChange={(e) => setName(e.target.value)}
+                                            className="peer block min-h-[auto] w-full rounded border-2 bg-transparent py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary"
+                                            id="nameInput"
+                                            required
+                                        />
+                                        <label
+                                            htmlFor="nameInput"
+                                            className="pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary"
+                                        >
+                                            Name
+                                        </label>
                                     </div>
                                     <div className="relative mb-6">
-                                        <input type="email" className="peer block min-h-[auto] w-full rounded border-2 bg-transparent py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" id="emailInput" />
-                                        <label className="pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary" htmlFor="emailInput" >Email address</label>
+                                        <input
+                                            type="email"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            className="peer block min-h-[auto] w-full rounded border-2 bg-transparent py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary"
+                                            id="emailInput"
+                                            required
+                                        />
+                                        <label
+                                            htmlFor="emailInput"
+                                            className="pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary"
+                                        >
+                                            Email address
+                                        </label>
                                     </div>
                                     <div className="relative mb-6">
-                                        <textarea className="peer block min-h-[auto] w-full rounded border-2 bg-transparent py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100" id="messageInput" rows="3"></textarea>
-                                        <label htmlFor="messageInput" className="pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary">Message</label>
+                                        <textarea
+                                            value={message}
+                                            onChange={(e) => setMessage(e.target.value)}
+                                            className="peer block min-h-[auto] w-full rounded border-2 bg-transparent py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100"
+                                            id="messageInput"
+                                            rows="3"
+                                            required
+                                        ></textarea>
+                                        <label
+                                            htmlFor="messageInput"
+                                            className="pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary"
+                                        >
+                                            Message
+                                        </label>
                                     </div>
                                     <div className="relative mb-6 flex items-center text-center ml-14">
-                                        <input type="checkbox" className="peer relative appearance-none h-6 w-6 border-2 border-gray-300 rounded-md checked:bg-green-500 checked:border-transparent transition-all duration-300 cursor-pointer" id="copyCheck" defaultChecked />
-                                        <label className="inline-block pl-2 cursor-pointer text-gray-700" htmlFor="copyCheck" >Send me a copy of this message</label>
-                                        <style>
-                                            {`
-                                                input[type='checkbox'] {
-                                                    position: relative;
-                                                }
-                                                input[type='checkbox']::after {
-                                                    content: '';
-                                                    display: block;
-                                                    width: 0.875rem;
-                                                    height: 0.875rem;
-                                                    border: 2px solid white;
-                                                    border-left: 0;
-                                                    border-top: 0;
-                                                    transform: rotate(45deg);
-                                                    position: absolute;
-                                                    top: 0.125rem;
-                                                    left: 0.25rem;
-                                                    opacity: 0;
-                                                    transition: opacity 0.3s ease-in-out;
-                                                }
-                                                input[type='checkbox']:checked::after {
-                                                    opacity: 1;
-                                                }
-                                            `}
-                                        </style>
+                                        <input
+                                            type="checkbox"
+                                            checked={sendCopy}
+                                            onChange={(e) => setSendCopy(e.target.checked)}
+                                            className="peer relative appearance-none h-6 w-6 border-2 border-gray-300 rounded-md checked:bg-green-500 checked:border-transparent transition-all duration-300 cursor-pointer"
+                                            id="copyCheck"
+                                        />
+                                        <label
+                                            htmlFor="copyCheck"
+                                            className="inline-block pl-2 cursor-pointer text-gray-700"
+                                        >
+                                            Send me a copy of this message
+                                        </label>
                                     </div>
-                                    <button type="button" className="mb-6 w-full rounded bg-green-500 hover:bg-green-600 transition-all 0.3s ease text-white px-6 pt-2.5 pb-2 text-sm font-medium uppercase leading-normal lg:mb-0">Send Message</button>
+                                    <button
+                                        type="submit"
+                                        className="mb-6 w-full rounded bg-green-500 hover:bg-green-600 transition-all 0.3s ease text-white px-6 pt-2.5 pb-2 text-sm font-medium uppercase leading-normal lg:mb-0"
+                                    >
+                                        Send Message
+                                    </button>
                                 </form>
                             </div>
                             <div className="flex flex-wrap w-full lg:w-7/12">
