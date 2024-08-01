@@ -6,7 +6,7 @@ import Overview from "../components/Overview";
 import Transactions from "../components/Transactions";
 import TransactionDetails from "../components/TransactionDetails";
 import NewMedicines from "../components/AddMedicines";
-import TransactionForm from "../components/TransactionForm"; // Import the TransactionForm component
+import TransactionForm from "../components/TransactionForm";
 
 export default function UserDashBoard() {
     return (

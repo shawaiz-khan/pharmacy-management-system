@@ -1,6 +1,6 @@
 #include <iostream>
 #include <mysql.h>
-#include <cstdlib> // for std::atoi
+#include <cstdlib>
 
 int main(int argc, char *argv[]) {
     if (argc < 4) {
@@ -11,9 +11,8 @@ int main(int argc, char *argv[]) {
     const char* name = argv[1];
     const char* email = argv[2];
     const char* message = argv[3];
-    int copy = argc > 4 ? std::atoi(argv[4]) : 0; // Convert to integer
+    int copy = argc > 4 ? std::atoi(argv[4]) : 0;
 
-    // Initialize MySQL connection
     MYSQL *conn;
     MYSQL_STMT *stmt;
     MYSQL_BIND bind[4];
@@ -47,7 +46,6 @@ int main(int argc, char *argv[]) {
 
     memset(bind, 0, sizeof(bind));
 
-    // Bind the parameters
     bind[0].buffer_type = MYSQL_TYPE_STRING;
     bind[0].buffer = (char *)name;
     bind[0].buffer_length = strlen(name);
@@ -60,7 +58,7 @@ int main(int argc, char *argv[]) {
     bind[2].buffer = (char *)message;
     bind[2].buffer_length = strlen(message);
 
-    bind[3].buffer_type = MYSQL_TYPE_LONG; // Set as integer type
+    bind[3].buffer_type = MYSQL_TYPE_LONG;
     bind[3].buffer = (char *)&copy;
     bind[3].buffer_length = sizeof(copy);
 

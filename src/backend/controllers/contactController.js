@@ -4,14 +4,11 @@ const path = require('path');
 
 const submitContact = (req, res) => {
     const { name, email, message, copy } = req.body;
-
-    // Convert 'copy' to integer value
     const copyValue = copy ? '1' : '0';
 
     console.log('Received data:', { name, email, message, copy: copyValue });
 
-    // Proceed with C++ execution
-    const cppPath = path.resolve(__dirname, '../cpp-backend/contact-submission'); // Ensure correct path
+    const cppPath = path.resolve(__dirname, '../cpp-backend/contact-submission');
     const cppProcess = spawn(cppPath, [name, email, message, copyValue]);
 
     cppProcess.stdout.on('data', (data) => {

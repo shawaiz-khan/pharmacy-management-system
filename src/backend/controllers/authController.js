@@ -34,10 +34,9 @@ const loginUser = (req, res) => {
             }
 
             if (isMatch) {
-                // Set session or token for user
                 console.log("Logged In");
-                req.session.userId = user.id; // or use a token mechanism
-                req.session.user = user; // store user info in session
+                req.session.userId = user.id;
+                req.session.user = user;
                 return res.status(200).json({ message: 'Login successful' });
             } else {
                 return res.status(401).json({ error: 'Invalid credentials' });

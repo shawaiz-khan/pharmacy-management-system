@@ -3,16 +3,10 @@ const express = require('express');
 const router = express.Router();
 const medicinesController = require('../controllers/medicinesController');
 
-// Route to fetch all medicines
+// Medicine Routes  
 router.get('/', medicinesController.getAllMedicines);
-
-// Route to add a new medicine
 router.post('/', medicinesController.addMedicine);
-
-// Route to update a medicine by ID
 router.put('/:id', medicinesController.updateMedicine);
-
-// Route to delete a medicine by ID
 router.delete('/:id', medicinesController.deleteMedicine);
 
 module.exports = router;

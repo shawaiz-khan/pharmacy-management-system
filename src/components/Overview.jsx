@@ -8,7 +8,6 @@ function Overview() {
     const [transactionData, setTransactionData] = useState([]);
 
     useEffect(() => {
-        // Fetch sales data from the backend
         const fetchSalesData = async () => {
             try {
                 const response = await fetch('http://localhost:3000/api/sales');
@@ -20,12 +19,11 @@ function Overview() {
             }
         };
 
-        // Fetch transaction data from the backend
         const fetchTransactionData = async () => {
             try {
                 const response = await fetch('http://localhost:3000/api/transactions');
                 const data = await response.json();
-                console.log('Fetched transaction data:', data); // Log the fetched transaction data
+                console.log('Fetched transaction data:', data);
                 setTransactionData(data);
             } catch (error) {
                 console.error('Failed to fetch transaction data:', error);
@@ -37,7 +35,7 @@ function Overview() {
     }, []);
 
     useEffect(() => {
-        console.log('Sales data state updated:', salesData); // Log state update
+        console.log('Sales data state updated:', salesData);
     }, [salesData]);
 
     const totalTransaction = () => {
@@ -46,7 +44,6 @@ function Overview() {
     };
 
     const totalPatientCount = () => {
-        // Extract unique patient names
         const uniquePatients = new Set(transactionData.map(transaction => transaction.patient_name));
         return uniquePatients.size;
     };

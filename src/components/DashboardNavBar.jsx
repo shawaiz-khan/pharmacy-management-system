@@ -38,7 +38,7 @@ function DashboardNavBar() {
 
             if (response.ok) {
                 setIsLoggedIn(false);
-                navigate('/'); // Navigate to the home page after successful logout
+                navigate('/');
             } else {
                 console.error('Error logging out');
             }

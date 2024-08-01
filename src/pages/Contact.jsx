@@ -72,95 +72,47 @@ export default function Contact() {
                             <div className="mb-12 w-full md:px-3 lg:mb-0 lg:w-5/12 lg:px-6">
                                 <form onSubmit={handleSubmit}>
                                     <div className="relative mb-6">
-                                        <input
-                                            type="text"
-                                            name="name"
-                                            className="peer block min-h-[auto] w-full rounded border-2 bg-transparent py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary"
-                                            id="nameInput"
-                                            required
-                                        />
-                                        <label
-                                            className="pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary"
-                                            htmlFor="nameInput"
-                                        >
-                                            Name
-                                        </label>
+                                        <input type="text" name="name" className="peer block min-h-[auto] w-full rounded border-2 bg-transparent py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" id="nameInput" required />
+                                        <label className="pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary" htmlFor="nameInput">Name</label>
                                     </div>
                                     <div className="relative mb-6">
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            className="peer block min-h-[auto] w-full rounded border-2 bg-transparent py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary"
-                                            id="emailInput"
-                                            required
-                                        />
-                                        <label
-                                            className="pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary"
-                                            htmlFor="emailInput"
-                                        >
-                                            Email address
-                                        </label>
+                                        <input type="email" name="email" className="peer block min-h-[auto] w-full rounded border-2 bg-transparent py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" id="emailInput" required />
+                                        <label className="pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary" htmlFor="emailInput">Email address</label>
                                     </div>
                                     <div className="relative mb-6">
-                                        <textarea
-                                            name="message"
-                                            className="peer block min-h-[auto] w-full rounded border-2 bg-transparent py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100"
-                                            id="messageInput"
-                                            rows="3"
-                                            required
-                                        ></textarea>
-                                        <label
-                                            htmlFor="messageInput"
-                                            className="pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary"
-                                        >
-                                            Message
-                                        </label>
+                                        <textarea name="message" className="peer block min-h-[auto] w-full rounded border-2 bg-transparent py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100" id="messageInput" rows="3" required></textarea>
+                                        <label htmlFor="messageInput" className="pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary">Message</label>
                                     </div>
                                     <div className="relative mb-6 flex items-center text-center ml-14">
-                                        <input
-                                            type="checkbox"
-                                            name="copy"
-                                            className="peer relative appearance-none h-6 w-6 border-2 border-gray-300 rounded-md checked:bg-green-500 checked:border-transparent transition-all duration-300 cursor-pointer"
-                                            id="copyCheck"
-                                        />
-                                        <label
-                                            className="inline-block pl-2 cursor-pointer text-gray-700"
-                                            htmlFor="copyCheck"
-                                        >
-                                            Send me a copy of this message
-                                        </label>
+                                        <input type="checkbox" name="copy" className="peer relative appearance-none h-6 w-6 border-2 border-gray-300 rounded-md checked:bg-green-500 checked:border-transparent transition-all duration-300 cursor-pointer" id="copyCheck"/>
+                                        <label className="inline-block pl-2 cursor-pointer text-gray-700" htmlFor="copyCheck">Send me a copy of this message</label>
                                         <style>
                                             {`
-                input[type='checkbox'] {
-                    position: relative;
-                }
-                input[type='checkbox']::after {
-                    content: '';
-                    display: block;
-                    width: 0.875rem;
-                    height: 0.875rem;
-                    border: 2px solid white;
-                    border-left: 0;
-                    border-top: 0;
-                    transform: rotate(45deg);
-                    position: absolute;
-                    top: 0.125rem;
-                    left: 0.25rem;
-                    opacity: 0;
-                    transition: opacity 0.3s ease-in-out;
-                }
-                input[type='checkbox']:checked::after {
-                    opacity: 1;
-                }
-            `}
+                                                input[type='checkbox'] {
+                                                    position: relative;
+                                                }
+                                                input[type='checkbox']::after {
+                                                content: '';
+                                                display: block;
+                                                width: 0.875rem;
+                                                height: 0.875rem;
+                                                border: 2px solid white;
+                                                border-left: 0;
+                                                border-top: 0;
+                                                transform: rotate(45deg);
+                                                position: absolute;
+                                                top: 0.125rem;
+                                                left: 0.25rem;
+                                                opacity: 0;
+                                                transition: opacity 0.3s ease-in-out;
+                                                }
+                                                input[type='checkbox']:checked::after {
+                                                opacity: 1;
+                                                }
+                                            `}
                                         </style>
                                     </div>
-                                    <button
-                                        type="submit"
-                                        className="mb-6 w-full rounded bg-green-500 hover:bg-green-600 transition-all 0.3s ease text-white px-6 pt-2.5 pb-2 text-sm font-medium uppercase leading-normal lg:mb-0"
-                                    >
-                                        Send Message
-                                    </button>
+                                    <button type="submit" className="mb-6 w-full rounded bg-green-500 hover:bg-green-600 transition-all 0.3s ease text-white px-6 pt-2.5 pb-2 text-sm font-medium uppercase leading-normal lg:mb-0">Send Message</button>
                                 </form>
                             </div>
                             <div className="flex flex-wrap w-full lg:w-7/12">

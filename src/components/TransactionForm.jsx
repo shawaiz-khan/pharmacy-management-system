@@ -27,7 +27,6 @@ const TransactionForm = () => {
                 doctor_name: doctorName,
             };
 
-            // Debug logs
             console.log('Transaction Data:', transactionData);
 
             try {
@@ -61,14 +60,7 @@ const TransactionForm = () => {
                         <div className="flex-1 flex-col justify-center items-center p-8 bg-white rounded-md shadow-md pt-[50px]">
                             <div className="mb-6">
                                 <label htmlFor="medicineName" className="block mb-2 font-semibold">Medicine Name:</label>
-                                <input 
-                                    id="medicineName" 
-                                    type="text" 
-                                    value={medicineName} 
-                                    onChange={(e) => setMedicineName(e.target.value)} 
-                                    className="border border-gray-300 p-2 rounded-lg w-full" 
-                                    readOnly 
-                                />
+                                <input id="medicineName" type="text" value={medicineName} onChange={(e) => setMedicineName(e.target.value)} className="border border-gray-300 p-2 rounded-lg w-full" readOnly />
                             </div>
                             <div className="mb-6">
                                 <p><strong>Dosage:</strong> {medicine.dosage || 'N/A'}</p>
@@ -77,44 +69,21 @@ const TransactionForm = () => {
                             </div>
                             <div className="mb-6">
                                 <label htmlFor="quantity" className="block mb-2 font-semibold">Quantity:</label>
-                                <input 
-                                    id="quantity" 
-                                    type="number" 
-                                    min="1" 
-                                    value={quantity} 
-                                    onChange={(e) => setQuantity(parseInt(e.target.value))} 
+                                <input id="quantity" type="number" min="1" value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value))} 
                                     className="border border-gray-300 p-2 rounded-lg w-full" 
                                 />
                             </div>
                             <div className="mb-6">
                                 <label htmlFor="patientName" className="block mb-2 font-semibold">Patient Name:</label>
-                                <input 
-                                    id="patientName" 
-                                    type="text" 
-                                    value={patientName} 
-                                    onChange={(e) => setPatientName(e.target.value)} 
-                                    className="border border-gray-300 p-2 rounded-lg w-full" 
-                                />
+                                <input  id="patientName"  type="text"  value={patientName}  onChange={(e) => setPatientName(e.target.value)}  className="border border-gray-300 p-2 rounded-lg w-full" />
                             </div>
                             <div className="mb-6">
                                 <label htmlFor="patientID" className="block mb-2 font-semibold">Patient ID:</label>
-                                <input 
-                                    id="patientID" 
-                                    type="text" 
-                                    value={patientID} 
-                                    onChange={(e) => setPatientID(e.target.value)} 
-                                    className="border border-gray-300 p-2 rounded-lg w-full" 
-                                />
+                                <input  id="patientID"  type="text"  value={patientID}  onChange={(e) => setPatientID(e.target.value)}  className="border border-gray-300 p-2 rounded-lg w-full" />
                             </div>
                             <div className="mb-6">
                                 <label htmlFor="doctorName" className="block mb-2 font-semibold">Doctor Name:</label>
-                                <input 
-                                    id="doctorName" 
-                                    type="text" 
-                                    value={doctorName} 
-                                    onChange={(e) => setDoctorName(e.target.value)} 
-                                    className="border border-gray-300 p-2 rounded-lg w-full" 
-                                />
+                                <input  id="doctorName"  type="text"  value={doctorName}  onChange={(e) => setDoctorName(e.target.value)}  className="border border-gray-300 p-2 rounded-lg w-full" />
                             </div>
                             <div className="mb-6 flex flex-row w-[100%] justify-between">
                                 <p className="text-xl font-semibold">Total Price: ${totalPrice.toFixed(2)}</p>

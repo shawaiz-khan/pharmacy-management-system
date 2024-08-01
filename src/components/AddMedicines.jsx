@@ -24,7 +24,7 @@ const AddMedicines = () => {
         try {
             const response = await fetch('http://localhost:3000/api/medicines');
             const data = await response.json();
-            setMedicinesList(data); // Ensure data includes IDs
+            setMedicinesList(data);
         } catch (error) {
             console.error('Error fetching medicines:', error);
         }
@@ -80,7 +80,7 @@ const AddMedicines = () => {
                 method: 'DELETE'
             });
             if (response.ok) {
-                fetchMedicines(); // Refresh list after deleting
+                fetchMedicines();
             } else {
                 console.error('Failed to delete medicine');
             }

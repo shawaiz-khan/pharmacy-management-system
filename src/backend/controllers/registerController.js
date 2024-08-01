@@ -7,7 +7,6 @@ const saltRounds = 10;
 const registerUser = (req, res) => {
     const { firstName, lastName, email, password } = req.body;
 
-    // Validate input
     if (!email || !password) {
         return res.status(400).json({ error: 'Email and password are required' });
     }

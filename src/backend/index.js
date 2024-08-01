@@ -13,7 +13,7 @@ const contactRoutes = require('./routes/contact');
 
 // Middleware
 app.use(cors({
-    origin: 'http://localhost:5173', // Your frontend URL
+    origin: 'http://localhost:5173',
     credentials: true
 }));
 app.use(express.json());
@@ -21,7 +21,7 @@ app.use(session({
     secret: 'your-secret-key',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false } // Set to true if using HTTPS
+    cookie: { secure: false }
 }));
 
 // Use routes
@@ -29,7 +29,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/medicines', medicinesRoutes);
 app.use('/api/transactions', transactionRoutes);
 app.use('/api/sales', salesRoutes);
-app.use('/api/contact', contactRoutes); // Ensure this path is correct
+app.use('/api/contact', contactRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3000;

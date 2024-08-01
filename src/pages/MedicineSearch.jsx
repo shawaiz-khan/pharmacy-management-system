@@ -10,7 +10,7 @@ import GitIcon from '../assets/images/git.svg';
 import InstaIcon from '../assets/images/insta.svg';
 import WebIcon from '../assets/images/webs.svg';
 import LinkedIcon from '../assets/images/linked.svg';
-import { AuthContext } from '../context/AuthContext'; // Import AuthContext
+import { AuthContext } from '../context/AuthContext';
 
 export default function MedicineSearch() {
     const [medicineName, setMedicineName] = useState('');
@@ -19,7 +19,7 @@ export default function MedicineSearch() {
     const [filteredMedicines, setFilteredMedicines] = useState([]);
     const searchResultsRef = useRef(null);
     const navigate = useNavigate();
-    const { isLoggedIn } = useContext(AuthContext); // Get isLoggedIn from AuthContext
+    const { isLoggedIn } = useContext(AuthContext);
 
     const handleSearchSubmit = async () => {
         try {

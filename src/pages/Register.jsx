@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import BlackNavBar from "../components/BlackNavBar";
 import GoToTop from "../components/GoToTop";
 import RegImg from "../assets/images/reg.jpg";
@@ -15,7 +15,7 @@ export default function RegisterPage() {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
-    const navigate = useNavigate(); // Initialize useNavigate
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({
@@ -28,7 +28,7 @@ export default function RegisterPage() {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:3000/api/register', { // Correct endpoint for registration
+            const response = await fetch('http://localhost:3000/api/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -48,8 +48,8 @@ export default function RegisterPage() {
                     password: '',
                 });
                 setTimeout(() => {
-                    navigate('/login'); // Redirect to login page after successful registration
-                }, 2000); // Optional: delay to show success message
+                    navigate('/login');
+                }, 2000);
             } else {
                 setError(data.error);
                 setSuccess('');

@@ -29,12 +29,11 @@ export default function TransactionList() {
                 transactions: []
             };
         }
-        // Ensure price is multiplied by quantity correctly
         acc[transaction.patient_id].total += transaction.price;
         acc[transaction.patient_id].transactions.push({
             medicine_name: transaction.medicine_name,
             quantity: transaction.quantity,
-            price: transaction.price / transaction.quantity, // Assuming transaction.price is the total price, get price per unit
+            price: transaction.price / transaction.quantity,
             patient_id: transaction.patient_id
         });
         return acc;

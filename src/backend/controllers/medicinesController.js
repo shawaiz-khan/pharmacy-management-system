@@ -53,11 +53,10 @@ exports.updateMedicine = (req, res) => {
     });
 };
 
-// Delete a medicine by ID
+// Delete a Medicine 
 exports.deleteMedicine = (req, res) => {
     const { id } = req.params;
 
-    // Log the id to verify it
     console.log('Deleting medicine with id:', id);
 
     if (!id) {

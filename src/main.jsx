@@ -1,10 +1,10 @@
-// Imports 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App.jsx';
 import './index.css';
 import { AuthProvider } from './context/AuthContext.jsx';
+
 // FontAwesome Icons 
 import "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/free-brands-svg-icons";

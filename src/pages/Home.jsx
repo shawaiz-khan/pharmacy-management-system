@@ -14,7 +14,6 @@ export default function Home() {
     const [medicinesData, setMedicinesData] = useState([]);
 
     useEffect(() => {
-        // Fetch data from the backend
         const fetchMedicines = async () => {
             try {
                 const response = await fetch('http://localhost:3000/api/medicines');
@@ -41,9 +40,7 @@ export default function Home() {
                         backgroundRepeat: "no-repeat",
                         height: "100vh",
                         width: "100%",
-                    }}
-                    className="w-full h-screen font-workSans relative flex flex-col justify-center items-center"
-                >
+                    }} className="w-full h-screen font-workSans relative flex flex-col justify-center items-center">
                     <div className="absolute text-white z-0 opacity-65 bg-black w-full h-screen top-0 left-0"></div>
                     <NavBar />
                     {/* Hero Section  */}

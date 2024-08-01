@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 export default function MedicineCategory({ medicinesData }) {
-    // Get unique categories along with their descriptions
     const uniqueCategoriesMap = new Map();
     medicinesData.forEach(medicine => {
         if (!uniqueCategoriesMap.has(medicine.category)) {

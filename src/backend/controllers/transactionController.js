@@ -2,11 +2,12 @@
 /* eslint-disable no-undef */
 const db = require('../utils/db');
 
+// Get all Transactions 
 const getAllTransactions = (req, res) => {
     console.log('Fetching all transactions');
-
+    
     const query = 'SELECT * FROM transactions_data';
-
+    
     db.query(query, (error, results) => {
         if (error) {
             console.error('Failed to fetch transactions:', error);
@@ -16,6 +17,7 @@ const getAllTransactions = (req, res) => {
     });
 };
 
+// Get all Transactions by Patient ID
 const getTransactionsByPatientID = (req, res) => {
     const { patientID } = req.params;
 
@@ -33,6 +35,7 @@ const getTransactionsByPatientID = (req, res) => {
     });
 };
 
+// Add a new Transaction 
 const addTransaction = (req, res) => {
     const { medicine_name, quantity, price, date, patient_name, patient_id, doctor_name } = req.body;
 
@@ -50,6 +53,7 @@ const addTransaction = (req, res) => {
     });
 };
 
+// Get the total transactions 
 const getTotalTransactions = (req, res) => {
     const query = 'SELECT SUM(price) AS total FROM transactions_data';
 
